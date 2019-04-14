@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.garden.mapper.DynamicMapper" >
+  <resultMap id="BaseResultMap" type="com.garden.po.Dynamic" >
+    <id column="dynamic_id" property="dynamicId" jdbcType="INTEGER" />
+    <result column="dynamic_userid" property="dynamicUserid" jdbcType="VARCHAR" />
+    <result column="dynamic_description" property="dynamicDescription" jdbcType="VARCHAR" />
+    <result column="dynamic_image" property="dynamicImage" jdbcType="VARCHAR" />
+    <result column="dynamic_date" property="dynamicDate" jdbcType="TIMESTAMP" />
+    <result column="dynamic_pointnum" property="dynamicPointnum" jdbcType="INTEGER" />
+    <result column="dynamic_viewnum" property="dynamicViewnum" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    dynamic_id, dynamic_userid, dynamic_description, dynamic_image, dynamic_date, dynamic_pointnum, 
+    dynamic_viewnum
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.garden.po.DynamicExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from dynamic
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from dynamic
+    where dynamic_id = #{dynamicId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from dynamic
+    where dynamic_id = #{dynamicId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.garden.po.DynamicExample" >
+    delete from dynamic
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.garden.po.Dynamic" >
+    insert into dynamic (dynamic_id, dynamic_userid, dynamic_description, 
+      dynamic_image, dynamic_date, dynamic_pointnum, 
+      dynamic_viewnum)
+    values (#{dynamicId,jdbcType=INTEGER}, #{dynamicUserid,jdbcType=VARCHAR}, #{dynamicDescription,jdbcType=VARCHAR}, 
+      #{dynamicImage,jdbcType=VARCHAR}, #{dynamicDate,jdbcType=TIMESTAMP}, #{dynamicPointnum,jdbcType=INTEGER}, 
+      #{dynamicViewnum,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.garden.po.Dynamic" >
+    insert into dynamic
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dynamicId != null" >
+        dynamic_id,
+      </if>
+      <if test="dynamicUserid != null" >
+        dynamic_userid,
+      </if>
+      <if test="dynamicDescription != null" >
+        dynamic_description,
+      </if>
+      <if test="dynamicImage != null" >
+        dynamic_image,
+      </if>
+      <if test="dynamicDate != null" >
+        dynamic_date,
+      </if>
+      <if test="dynamicPointnum != null" >
+        dynamic_pointnum,
+      </if>
+      <if test="dynamicViewnum != null" >
+        dynamic_viewnum,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dynamicId != null" >
+        #{dynamicId,jdbcType=INTEGER},
+      </if>
+      <if test="dynamicUserid != null" >
+        #{dynamicUserid,jdbcType=VARCHAR},
+      </if>
+      <if test="dynamicDescription != null" >
+        #{dynamicDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="dynamicImage != null" >
+        #{dynamicImage,jdbcType=VARCHAR},
+      </if>
+      <if test="dynamicDate != null" >
+        #{dynamicDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dynamicPointnum != null" >
+        #{dynamicPointnum,jdbcType=INTEGER},
+      </if>
+      <if test="dynamicViewnum != null" >
+        #{dynamicViewnum,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.garden.po.DynamicExample" resultType="java.lang.Integer" >
+    select count(*) from dynamic
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update dynamic
+    <set >
+      <if test="record.dynamicId != null" >
+        dynamic_id = #{record.dynamicId,jdbcType=INTEGER},
+      </if>
+      <if test="record.dynamicUserid != null" >
+        dynamic_userid = #{record.dynamicUserid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dynamicDescription != null" >
+        dynamic_description = #{record.dynamicDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dynamicImage != null" >
+        dynamic_image = #{record.dynamicImage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dynamicDate != null" >
+        dynamic_date = #{record.dynamicDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.dynamicPointnum != null" >
+        dynamic_pointnum = #{record.dynamicPointnum,jdbcType=INTEGER},
+      </if>
+      <if test="record.dynamicViewnum != null" >
+        dynamic_viewnum = #{record.dynamicViewnum,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update dynamic
+    set dynamic_id = #{record.dynamicId,jdbcType=INTEGER},
+      dynamic_userid = #{record.dynamicUserid,jdbcType=VARCHAR},
+      dynamic_description = #{record.dynamicDescription,jdbcType=VARCHAR},
+      dynamic_image = #{record.dynamicImage,jdbcType=VARCHAR},
+      dynamic_date = #{record.dynamicDate,jdbcType=TIMESTAMP},
+      dynamic_pointnum = #{record.dynamicPointnum,jdbcType=INTEGER},
+      dynamic_viewnum = #{record.dynamicViewnum,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.garden.po.Dynamic" >
+    update dynamic
+    <set >
+      <if test="dynamicUserid != null" >
+        dynamic_userid = #{dynamicUserid,jdbcType=VARCHAR},
+      </if>
+      <if test="dynamicDescription != null" >
+        dynamic_description = #{dynamicDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="dynamicImage != null" >
+        dynamic_image = #{dynamicImage,jdbcType=VARCHAR},
+      </if>
+      <if test="dynamicDate != null" >
+        dynamic_date = #{dynamicDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dynamicPointnum != null" >
+        dynamic_pointnum = #{dynamicPointnum,jdbcType=INTEGER},
+      </if>
+      <if test="dynamicViewnum != null" >
+        dynamic_viewnum = #{dynamicViewnum,jdbcType=INTEGER},
+      </if>
+    </set>
+    where dynamic_id = #{dynamicId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.garden.po.Dynamic" >
+    update dynamic
+    set dynamic_userid = #{dynamicUserid,jdbcType=VARCHAR},
+      dynamic_description = #{dynamicDescription,jdbcType=VARCHAR},
+      dynamic_image = #{dynamicImage,jdbcType=VARCHAR},
+      dynamic_date = #{dynamicDate,jdbcType=TIMESTAMP},
+      dynamic_pointnum = #{dynamicPointnum,jdbcType=INTEGER},
+      dynamic_viewnum = #{dynamicViewnum,jdbcType=INTEGER}
+    where dynamic_id = #{dynamicId,jdbcType=INTEGER}
+  </update>
+</mapper>

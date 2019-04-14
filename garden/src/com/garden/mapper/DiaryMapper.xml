@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.garden.mapper.DiaryMapper" >
+  <resultMap id="BaseResultMap" type="com.garden.po.Diary" >
+    <id column="diary_id" property="diaryId" jdbcType="INTEGER" />
+    <result column="diary_userid" property="diaryUserid" jdbcType="VARCHAR" />
+    <result column="diary_plantname" property="diaryPlantname" jdbcType="VARCHAR" />
+    <result column="diary_space" property="diarySpace" jdbcType="VARCHAR" />
+    <result column="diary_method" property="diaryMethod" jdbcType="VARCHAR" />
+    <result column="diary_city" property="diaryCity" jdbcType="VARCHAR" />
+    <result column="diary_sun" property="diarySun" jdbcType="VARCHAR" />
+    <result column="diary_water" property="diaryWater" jdbcType="VARCHAR" />
+    <result column="diary_temperature" property="diaryTemperature" jdbcType="VARCHAR" />
+    <result column="diary_soil" property="diarySoil" jdbcType="VARCHAR" />
+    <result column="diary_time" property="diaryTime" jdbcType="VARCHAR" />
+    <result column="diary_pointnum" property="diaryPointnum" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.garden.po.Diary" extends="BaseResultMap" >
+    <result column="diary_image" property="diaryImage" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    diary_id, diary_userid, diary_plantname, diary_space, diary_method, diary_city, diary_sun, 
+    diary_water, diary_temperature, diary_soil, diary_time, diary_pointnum
+  </sql>
+  <sql id="Blob_Column_List" >
+    diary_image
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.garden.po.DiaryExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from diary
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.garden.po.DiaryExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from diary
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from diary
+    where diary_id = #{diaryId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from diary
+    where diary_id = #{diaryId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.garden.po.DiaryExample" >
+    delete from diary
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.garden.po.Diary" >
+    insert into diary (diary_id, diary_userid, diary_plantname, 
+      diary_space, diary_method, diary_city, 
+      diary_sun, diary_water, diary_temperature, 
+      diary_soil, diary_time, diary_pointnum, 
+      diary_image)
+    values (#{diaryId,jdbcType=INTEGER}, #{diaryUserid,jdbcType=VARCHAR}, #{diaryPlantname,jdbcType=VARCHAR}, 
+      #{diarySpace,jdbcType=VARCHAR}, #{diaryMethod,jdbcType=VARCHAR}, #{diaryCity,jdbcType=VARCHAR}, 
+      #{diarySun,jdbcType=VARCHAR}, #{diaryWater,jdbcType=VARCHAR}, #{diaryTemperature,jdbcType=VARCHAR}, 
+      #{diarySoil,jdbcType=VARCHAR}, #{diaryTime,jdbcType=VARCHAR}, #{diaryPointnum,jdbcType=INTEGER}, 
+      #{diaryImage,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.garden.po.Diary" >
+    insert into diary
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="diaryId != null" >
+        diary_id,
+      </if>
+      <if test="diaryUserid != null" >
+        diary_userid,
+      </if>
+      <if test="diaryPlantname != null" >
+        diary_plantname,
+      </if>
+      <if test="diarySpace != null" >
+        diary_space,
+      </if>
+      <if test="diaryMethod != null" >
+        diary_method,
+      </if>
+      <if test="diaryCity != null" >
+        diary_city,
+      </if>
+      <if test="diarySun != null" >
+        diary_sun,
+      </if>
+      <if test="diaryWater != null" >
+        diary_water,
+      </if>
+      <if test="diaryTemperature != null" >
+        diary_temperature,
+      </if>
+      <if test="diarySoil != null" >
+        diary_soil,
+      </if>
+      <if test="diaryTime != null" >
+        diary_time,
+      </if>
+      <if test="diaryPointnum != null" >
+        diary_pointnum,
+      </if>
+      <if test="diaryImage != null" >
+        diary_image,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="diaryId != null" >
+        #{diaryId,jdbcType=INTEGER},
+      </if>
+      <if test="diaryUserid != null" >
+        #{diaryUserid,jdbcType=VARCHAR},
+      </if>
+      <if test="diaryPlantname != null" >
+        #{diaryPlantname,jdbcType=VARCHAR},
+      </if>
+      <if test="diarySpace != null" >
+        #{diarySpace,jdbcType=VARCHAR},
+      </if>
+      <if test="diaryMethod != null" >
+        #{diaryMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="diaryCity != null" >
+        #{diaryCity,jdbcType=VARCHAR},
+      </if>
+      <if test="diarySun != null" >
+        #{diarySun,jdbcType=VARCHAR},
+      </if>
+      <if test="diaryWater != null" >
+        #{diaryWater,jdbcType=VARCHAR},
+      </if>
+      <if test="diaryTemperature != null" >
+        #{diaryTemperature,jdbcType=VARCHAR},
+      </if>
+      <if test="diarySoil != null" >
+        #{diarySoil,jdbcType=VARCHAR},
+      </if>
+      <if test="diaryTime != null" >
+        #{diaryTime,jdbcType=VARCHAR},
+      </if>
+      <if test="diaryPointnum != null" >
+        #{diaryPointnum,jdbcType=INTEGER},
+      </if>
+      <if test="diaryImage != null" >
+        #{diaryImage,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.garden.po.DiaryExample" resultType="java.lang.Integer" >
+    select count(*) from diary
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update diary
+    <set >
+      <if test="record.diaryId != null" >
+        diary_id = #{record.diaryId,jdbcType=INTEGER},
+      </if>
+      <if test="record.diaryUserid != null" >
+        diary_userid = #{record.diaryUserid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diaryPlantname != null" >
+        diary_plantname = #{record.diaryPlantname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diarySpace != null" >
+        diary_space = #{record.diarySpace,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diaryMethod != null" >
+        diary_method = #{record.diaryMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diaryCity != null" >
+        diary_city = #{record.diaryCity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diarySun != null" >
+        diary_sun = #{record.diarySun,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diaryWater != null" >
+        diary_water = #{record.diaryWater,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diaryTemperature != null" >
+        diary_temperature = #{record.diaryTemperature,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diarySoil != null" >
+        diary_soil = #{record.diarySoil,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diaryTime != null" >
+        diary_time = #{record.diaryTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.diaryPointnum != null" >
+        diary_pointnum = #{record.diaryPointnum,jdbcType=INTEGER},
+      </if>
+      <if test="record.diaryImage != null" >
+        diary_image = #{record.diaryImage,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update diary
+    set diary_id = #{record.diaryId,jdbcType=INTEGER},
+      diary_userid = #{record.diaryUserid,jdbcType=VARCHAR},
+      diary_plantname = #{record.diaryPlantname,jdbcType=VARCHAR},
+      diary_space = #{record.diarySpace,jdbcType=VARCHAR},
+      diary_method = #{record.diaryMethod,jdbcType=VARCHAR},
+      diary_city = #{record.diaryCity,jdbcType=VARCHAR},
+      diary_sun = #{record.diarySun,jdbcType=VARCHAR},
+      diary_water = #{record.diaryWater,jdbcType=VARCHAR},
+      diary_temperature = #{record.diaryTemperature,jdbcType=VARCHAR},
+      diary_soil = #{record.diarySoil,jdbcType=VARCHAR},
+      diary_time = #{record.diaryTime,jdbcType=VARCHAR},
+      diary_pointnum = #{record.diaryPointnum,jdbcType=INTEGER},
+      diary_image = #{record.diaryImage,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update diary
+    set diary_id = #{record.diaryId,jdbcType=INTEGER},
+      diary_userid = #{record.diaryUserid,jdbcType=VARCHAR},
+      diary_plantname = #{record.diaryPlantname,jdbcType=VARCHAR},
+      diary_space = #{record.diarySpace,jdbcType=VARCHAR},
+      diary_method = #{record.diaryMethod,jdbcType=VARCHAR},
+      diary_city = #{record.diaryCity,jdbcType=VARCHAR},
+      diary_sun = #{record.diarySun,jdbcType=VARCHAR},
+      diary_water = #{record.diaryWater,jdbcType=VARCHAR},
+      diary_temperature = #{record.diaryTemperature,jdbcType=VARCHAR},
+      diary_soil = #{record.diarySoil,jdbcType=VARCHAR},
+      diary_time = #{record.diaryTime,jdbcType=VARCHAR},
+      diary_pointnum = #{record.diaryPointnum,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.garden.po.Diary" >
+    update diary
+    <set >
+      <if test="diaryUserid != null" >
+        diary_userid = #{diaryUserid,jdbcType=VARCHAR},
+      </if>
+      <if test="diaryPlantname != null" >
+        diary_plantname = #{diaryPlantname,jdbcType=VARCHAR},
+      </if>
+      <if test="diarySpace != null" >
+        diary_space = #{diarySpace,jdbcType=VARCHAR},
+      </if>
+      <if test="diaryMethod != null" >
+        diary_method = #{diaryMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="diaryCity != null" >
+        diary_city = #{diaryCity,jdbcType=VARCHAR},
+      </if>
+      <if test="diarySun != null" >
+        diary_sun = #{diarySun,jdbcType=VARCHAR},
+      </if>
+      <if test="diaryWater != null" >
+        diary_water = #{diaryWater,jdbcType=VARCHAR},
+      </if>
+      <if test="diaryTemperature != null" >
+        diary_temperature = #{diaryTemperature,jdbcType=VARCHAR},
+      </if>
+      <if test="diarySoil != null" >
+        diary_soil = #{diarySoil,jdbcType=VARCHAR},
+      </if>
+      <if test="diaryTime != null" >
+        diary_time = #{diaryTime,jdbcType=VARCHAR},
+      </if>
+      <if test="diaryPointnum != null" >
+        diary_pointnum = #{diaryPointnum,jdbcType=INTEGER},
+      </if>
+      <if test="diaryImage != null" >
+        diary_image = #{diaryImage,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where diary_id = #{diaryId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.garden.po.Diary" >
+    update diary
+    set diary_userid = #{diaryUserid,jdbcType=VARCHAR},
+      diary_plantname = #{diaryPlantname,jdbcType=VARCHAR},
+      diary_space = #{diarySpace,jdbcType=VARCHAR},
+      diary_method = #{diaryMethod,jdbcType=VARCHAR},
+      diary_city = #{diaryCity,jdbcType=VARCHAR},
+      diary_sun = #{diarySun,jdbcType=VARCHAR},
+      diary_water = #{diaryWater,jdbcType=VARCHAR},
+      diary_temperature = #{diaryTemperature,jdbcType=VARCHAR},
+      diary_soil = #{diarySoil,jdbcType=VARCHAR},
+      diary_time = #{diaryTime,jdbcType=VARCHAR},
+      diary_pointnum = #{diaryPointnum,jdbcType=INTEGER},
+      diary_image = #{diaryImage,jdbcType=LONGVARCHAR}
+    where diary_id = #{diaryId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.garden.po.Diary" >
+    update diary
+    set diary_userid = #{diaryUserid,jdbcType=VARCHAR},
+      diary_plantname = #{diaryPlantname,jdbcType=VARCHAR},
+      diary_space = #{diarySpace,jdbcType=VARCHAR},
+      diary_method = #{diaryMethod,jdbcType=VARCHAR},
+      diary_city = #{diaryCity,jdbcType=VARCHAR},
+      diary_sun = #{diarySun,jdbcType=VARCHAR},
+      diary_water = #{diaryWater,jdbcType=VARCHAR},
+      diary_temperature = #{diaryTemperature,jdbcType=VARCHAR},
+      diary_soil = #{diarySoil,jdbcType=VARCHAR},
+      diary_time = #{diaryTime,jdbcType=VARCHAR},
+      diary_pointnum = #{diaryPointnum,jdbcType=INTEGER}
+    where diary_id = #{diaryId,jdbcType=INTEGER}
+  </update>
+</mapper>

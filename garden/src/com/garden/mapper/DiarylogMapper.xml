@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.garden.mapper.DiarylogMapper" >
+  <resultMap id="BaseResultMap" type="com.garden.po.Diarylog" >
+    <id column="log_id" property="logId" jdbcType="INTEGER" />
+    <result column="log_diaryid" property="logDiaryid" jdbcType="INTEGER" />
+    <result column="log_pointnum" property="logPointnum" jdbcType="INTEGER" />
+    <result column="log_date" property="logDate" jdbcType="TIMESTAMP" />
+    <result column="log_image" property="logImage" jdbcType="VARCHAR" />
+    <result column="log_description" property="logDescription" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    log_id, log_diaryid, log_pointnum, log_date, log_image, log_description
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.garden.po.DiarylogExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from diarylog
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from diarylog
+    where log_id = #{logId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from diarylog
+    where log_id = #{logId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.garden.po.DiarylogExample" >
+    delete from diarylog
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.garden.po.Diarylog" >
+    insert into diarylog (log_id, log_diaryid, log_pointnum, 
+      log_date, log_image, log_description
+      )
+    values (#{logId,jdbcType=INTEGER}, #{logDiaryid,jdbcType=INTEGER}, #{logPointnum,jdbcType=INTEGER}, 
+      #{logDate,jdbcType=TIMESTAMP}, #{logImage,jdbcType=VARCHAR}, #{logDescription,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.garden.po.Diarylog" >
+    insert into diarylog
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="logId != null" >
+        log_id,
+      </if>
+      <if test="logDiaryid != null" >
+        log_diaryid,
+      </if>
+      <if test="logPointnum != null" >
+        log_pointnum,
+      </if>
+      <if test="logDate != null" >
+        log_date,
+      </if>
+      <if test="logImage != null" >
+        log_image,
+      </if>
+      <if test="logDescription != null" >
+        log_description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="logId != null" >
+        #{logId,jdbcType=INTEGER},
+      </if>
+      <if test="logDiaryid != null" >
+        #{logDiaryid,jdbcType=INTEGER},
+      </if>
+      <if test="logPointnum != null" >
+        #{logPointnum,jdbcType=INTEGER},
+      </if>
+      <if test="logDate != null" >
+        #{logDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logImage != null" >
+        #{logImage,jdbcType=VARCHAR},
+      </if>
+      <if test="logDescription != null" >
+        #{logDescription,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.garden.po.DiarylogExample" resultType="java.lang.Integer" >
+    select count(*) from diarylog
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update diarylog
+    <set >
+      <if test="record.logId != null" >
+        log_id = #{record.logId,jdbcType=INTEGER},
+      </if>
+      <if test="record.logDiaryid != null" >
+        log_diaryid = #{record.logDiaryid,jdbcType=INTEGER},
+      </if>
+      <if test="record.logPointnum != null" >
+        log_pointnum = #{record.logPointnum,jdbcType=INTEGER},
+      </if>
+      <if test="record.logDate != null" >
+        log_date = #{record.logDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.logImage != null" >
+        log_image = #{record.logImage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.logDescription != null" >
+        log_description = #{record.logDescription,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update diarylog
+    set log_id = #{record.logId,jdbcType=INTEGER},
+      log_diaryid = #{record.logDiaryid,jdbcType=INTEGER},
+      log_pointnum = #{record.logPointnum,jdbcType=INTEGER},
+      log_date = #{record.logDate,jdbcType=TIMESTAMP},
+      log_image = #{record.logImage,jdbcType=VARCHAR},
+      log_description = #{record.logDescription,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.garden.po.Diarylog" >
+    update diarylog
+    <set >
+      <if test="logDiaryid != null" >
+        log_diaryid = #{logDiaryid,jdbcType=INTEGER},
+      </if>
+      <if test="logPointnum != null" >
+        log_pointnum = #{logPointnum,jdbcType=INTEGER},
+      </if>
+      <if test="logDate != null" >
+        log_date = #{logDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logImage != null" >
+        log_image = #{logImage,jdbcType=VARCHAR},
+      </if>
+      <if test="logDescription != null" >
+        log_description = #{logDescription,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where log_id = #{logId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.garden.po.Diarylog" >
+    update diarylog
+    set log_diaryid = #{logDiaryid,jdbcType=INTEGER},
+      log_pointnum = #{logPointnum,jdbcType=INTEGER},
+      log_date = #{logDate,jdbcType=TIMESTAMP},
+      log_image = #{logImage,jdbcType=VARCHAR},
+      log_description = #{logDescription,jdbcType=VARCHAR}
+    where log_id = #{logId,jdbcType=INTEGER}
+  </update>
+</mapper>

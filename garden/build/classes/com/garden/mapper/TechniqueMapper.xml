@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.garden.mapper.TechniqueMapper">
+  <resultMap id="BaseResultMap" type="com.garden.po.Technique">
+    <id column="tech_id" jdbcType="INTEGER" property="techId" />
+    <result column="tech_name" jdbcType="VARCHAR" property="techName" />
+    <result column="tech_type" jdbcType="VARCHAR" property="techType" />
+    <result column="tech_description" jdbcType="VARCHAR" property="techDescription" />
+    <result column="tech_image" jdbcType="VARCHAR" property="techImage" />
+    <result column="tech_pointnum" jdbcType="INTEGER" property="techPointnum" />
+    <result column="tech_date" jdbcType="TIMESTAMP" property="techDate" />
+    <result column="tech_viewnum" jdbcType="INTEGER" property="techViewnum" />
+    <result column="tech_userid" jdbcType="VARCHAR" property="techUserid" />
+    <result column="tech_typetop" jdbcType="VARCHAR" property="techTypetop" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    tech_id, tech_name, tech_type, tech_description, tech_image, tech_pointnum, tech_date, 
+    tech_viewnum, tech_userid, tech_typetop
+  </sql>
+  <select id="selectByExample" parameterType="com.garden.po.TechniqueExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from technique
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from technique
+    where tech_id = #{techId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from technique
+    where tech_id = #{techId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.garden.po.TechniqueExample">
+    delete from technique
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.garden.po.Technique">
+    insert into technique (tech_id, tech_name, tech_type, 
+      tech_description, tech_image, tech_pointnum, 
+      tech_date, tech_viewnum, tech_userid, 
+      tech_typetop)
+    values (#{techId,jdbcType=INTEGER}, #{techName,jdbcType=VARCHAR}, #{techType,jdbcType=VARCHAR}, 
+      #{techDescription,jdbcType=VARCHAR}, #{techImage,jdbcType=VARCHAR}, #{techPointnum,jdbcType=INTEGER}, 
+      #{techDate,jdbcType=TIMESTAMP}, #{techViewnum,jdbcType=INTEGER}, #{techUserid,jdbcType=VARCHAR}, 
+      #{techTypetop,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.garden.po.Technique">
+    insert into technique
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="techId != null">
+        tech_id,
+      </if>
+      <if test="techName != null">
+        tech_name,
+      </if>
+      <if test="techType != null">
+        tech_type,
+      </if>
+      <if test="techDescription != null">
+        tech_description,
+      </if>
+      <if test="techImage != null">
+        tech_image,
+      </if>
+      <if test="techPointnum != null">
+        tech_pointnum,
+      </if>
+      <if test="techDate != null">
+        tech_date,
+      </if>
+      <if test="techViewnum != null">
+        tech_viewnum,
+      </if>
+      <if test="techUserid != null">
+        tech_userid,
+      </if>
+      <if test="techTypetop != null">
+        tech_typetop,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="techId != null">
+        #{techId,jdbcType=INTEGER},
+      </if>
+      <if test="techName != null">
+        #{techName,jdbcType=VARCHAR},
+      </if>
+      <if test="techType != null">
+        #{techType,jdbcType=VARCHAR},
+      </if>
+      <if test="techDescription != null">
+        #{techDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="techImage != null">
+        #{techImage,jdbcType=VARCHAR},
+      </if>
+      <if test="techPointnum != null">
+        #{techPointnum,jdbcType=INTEGER},
+      </if>
+      <if test="techDate != null">
+        #{techDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="techViewnum != null">
+        #{techViewnum,jdbcType=INTEGER},
+      </if>
+      <if test="techUserid != null">
+        #{techUserid,jdbcType=VARCHAR},
+      </if>
+      <if test="techTypetop != null">
+        #{techTypetop,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.garden.po.TechniqueExample" resultType="java.lang.Integer">
+    select count(*) from technique
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update technique
+    <set>
+      <if test="record.techId != null">
+        tech_id = #{record.techId,jdbcType=INTEGER},
+      </if>
+      <if test="record.techName != null">
+        tech_name = #{record.techName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.techType != null">
+        tech_type = #{record.techType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.techDescription != null">
+        tech_description = #{record.techDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="record.techImage != null">
+        tech_image = #{record.techImage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.techPointnum != null">
+        tech_pointnum = #{record.techPointnum,jdbcType=INTEGER},
+      </if>
+      <if test="record.techDate != null">
+        tech_date = #{record.techDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.techViewnum != null">
+        tech_viewnum = #{record.techViewnum,jdbcType=INTEGER},
+      </if>
+      <if test="record.techUserid != null">
+        tech_userid = #{record.techUserid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.techTypetop != null">
+        tech_typetop = #{record.techTypetop,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update technique
+    set tech_id = #{record.techId,jdbcType=INTEGER},
+      tech_name = #{record.techName,jdbcType=VARCHAR},
+      tech_type = #{record.techType,jdbcType=VARCHAR},
+      tech_description = #{record.techDescription,jdbcType=VARCHAR},
+      tech_image = #{record.techImage,jdbcType=VARCHAR},
+      tech_pointnum = #{record.techPointnum,jdbcType=INTEGER},
+      tech_date = #{record.techDate,jdbcType=TIMESTAMP},
+      tech_viewnum = #{record.techViewnum,jdbcType=INTEGER},
+      tech_userid = #{record.techUserid,jdbcType=VARCHAR},
+      tech_typetop = #{record.techTypetop,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.garden.po.Technique">
+    update technique
+    <set>
+      <if test="techName != null">
+        tech_name = #{techName,jdbcType=VARCHAR},
+      </if>
+      <if test="techType != null">
+        tech_type = #{techType,jdbcType=VARCHAR},
+      </if>
+      <if test="techDescription != null">
+        tech_description = #{techDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="techImage != null">
+        tech_image = #{techImage,jdbcType=VARCHAR},
+      </if>
+      <if test="techPointnum != null">
+        tech_pointnum = #{techPointnum,jdbcType=INTEGER},
+      </if>
+      <if test="techDate != null">
+        tech_date = #{techDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="techViewnum != null">
+        tech_viewnum = #{techViewnum,jdbcType=INTEGER},
+      </if>
+      <if test="techUserid != null">
+        tech_userid = #{techUserid,jdbcType=VARCHAR},
+      </if>
+      <if test="techTypetop != null">
+        tech_typetop = #{techTypetop,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where tech_id = #{techId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.garden.po.Technique">
+    update technique
+    set tech_name = #{techName,jdbcType=VARCHAR},
+      tech_type = #{techType,jdbcType=VARCHAR},
+      tech_description = #{techDescription,jdbcType=VARCHAR},
+      tech_image = #{techImage,jdbcType=VARCHAR},
+      tech_pointnum = #{techPointnum,jdbcType=INTEGER},
+      tech_date = #{techDate,jdbcType=TIMESTAMP},
+      tech_viewnum = #{techViewnum,jdbcType=INTEGER},
+      tech_userid = #{techUserid,jdbcType=VARCHAR},
+      tech_typetop = #{techTypetop,jdbcType=VARCHAR}
+    where tech_id = #{techId,jdbcType=INTEGER}
+  </update>
+  
+</mapper>

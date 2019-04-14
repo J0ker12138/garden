@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.garden.mapper.PlantMapper" >
+  <resultMap id="BaseResultMap" type="com.garden.po.Plant" >
+    <id column="plant_id" property="plantId" jdbcType="INTEGER" />
+    <result column="plant_name" property="plantName" jdbcType="VARCHAR" />
+    <result column="plant_method" property="plantMethod" jdbcType="VARCHAR" />
+    <result column="plant_times" property="plantTimes" jdbcType="VARCHAR" />
+    <result column="plant_flowering" property="plantFlowering" jdbcType="VARCHAR" />
+    <result column="plant_othername" property="plantOthername" jdbcType="VARCHAR" />
+    <result column="plant_image" property="plantImage" jdbcType="VARCHAR" />
+    <result column="plant_description" property="plantDescription" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    plant_id, plant_name, plant_method, plant_times, plant_flowering, plant_othername, 
+    plant_image, plant_description
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.garden.po.PlantExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from plant
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from plant
+    where plant_id = #{plantId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from plant
+    where plant_id = #{plantId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.garden.po.PlantExample" >
+    delete from plant
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.garden.po.Plant" >
+    insert into plant (plant_id, plant_name, plant_method, 
+      plant_times, plant_flowering, plant_othername, 
+      plant_image, plant_description)
+    values (#{plantId,jdbcType=INTEGER}, #{plantName,jdbcType=VARCHAR}, #{plantMethod,jdbcType=VARCHAR}, 
+      #{plantTimes,jdbcType=VARCHAR}, #{plantFlowering,jdbcType=VARCHAR}, #{plantOthername,jdbcType=VARCHAR}, 
+      #{plantImage,jdbcType=VARCHAR}, #{plantDescription,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.garden.po.Plant" >
+    insert into plant
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="plantId != null" >
+        plant_id,
+      </if>
+      <if test="plantName != null" >
+        plant_name,
+      </if>
+      <if test="plantMethod != null" >
+        plant_method,
+      </if>
+      <if test="plantTimes != null" >
+        plant_times,
+      </if>
+      <if test="plantFlowering != null" >
+        plant_flowering,
+      </if>
+      <if test="plantOthername != null" >
+        plant_othername,
+      </if>
+      <if test="plantImage != null" >
+        plant_image,
+      </if>
+      <if test="plantDescription != null" >
+        plant_description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="plantId != null" >
+        #{plantId,jdbcType=INTEGER},
+      </if>
+      <if test="plantName != null" >
+        #{plantName,jdbcType=VARCHAR},
+      </if>
+      <if test="plantMethod != null" >
+        #{plantMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="plantTimes != null" >
+        #{plantTimes,jdbcType=VARCHAR},
+      </if>
+      <if test="plantFlowering != null" >
+        #{plantFlowering,jdbcType=VARCHAR},
+      </if>
+      <if test="plantOthername != null" >
+        #{plantOthername,jdbcType=VARCHAR},
+      </if>
+      <if test="plantImage != null" >
+        #{plantImage,jdbcType=VARCHAR},
+      </if>
+      <if test="plantDescription != null" >
+        #{plantDescription,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.garden.po.PlantExample" resultType="java.lang.Integer" >
+    select count(*) from plant
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update plant
+    <set >
+      <if test="record.plantId != null" >
+        plant_id = #{record.plantId,jdbcType=INTEGER},
+      </if>
+      <if test="record.plantName != null" >
+        plant_name = #{record.plantName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.plantMethod != null" >
+        plant_method = #{record.plantMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="record.plantTimes != null" >
+        plant_times = #{record.plantTimes,jdbcType=VARCHAR},
+      </if>
+      <if test="record.plantFlowering != null" >
+        plant_flowering = #{record.plantFlowering,jdbcType=VARCHAR},
+      </if>
+      <if test="record.plantOthername != null" >
+        plant_othername = #{record.plantOthername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.plantImage != null" >
+        plant_image = #{record.plantImage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.plantDescription != null" >
+        plant_description = #{record.plantDescription,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update plant
+    set plant_id = #{record.plantId,jdbcType=INTEGER},
+      plant_name = #{record.plantName,jdbcType=VARCHAR},
+      plant_method = #{record.plantMethod,jdbcType=VARCHAR},
+      plant_times = #{record.plantTimes,jdbcType=VARCHAR},
+      plant_flowering = #{record.plantFlowering,jdbcType=VARCHAR},
+      plant_othername = #{record.plantOthername,jdbcType=VARCHAR},
+      plant_image = #{record.plantImage,jdbcType=VARCHAR},
+      plant_description = #{record.plantDescription,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.garden.po.Plant" >
+    update plant
+    <set >
+      <if test="plantName != null" >
+        plant_name = #{plantName,jdbcType=VARCHAR},
+      </if>
+      <if test="plantMethod != null" >
+        plant_method = #{plantMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="plantTimes != null" >
+        plant_times = #{plantTimes,jdbcType=VARCHAR},
+      </if>
+      <if test="plantFlowering != null" >
+        plant_flowering = #{plantFlowering,jdbcType=VARCHAR},
+      </if>
+      <if test="plantOthername != null" >
+        plant_othername = #{plantOthername,jdbcType=VARCHAR},
+      </if>
+      <if test="plantImage != null" >
+        plant_image = #{plantImage,jdbcType=VARCHAR},
+      </if>
+      <if test="plantDescription != null" >
+        plant_description = #{plantDescription,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where plant_id = #{plantId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.garden.po.Plant" >
+    update plant
+    set plant_name = #{plantName,jdbcType=VARCHAR},
+      plant_method = #{plantMethod,jdbcType=VARCHAR},
+      plant_times = #{plantTimes,jdbcType=VARCHAR},
+      plant_flowering = #{plantFlowering,jdbcType=VARCHAR},
+      plant_othername = #{plantOthername,jdbcType=VARCHAR},
+      plant_image = #{plantImage,jdbcType=VARCHAR},
+      plant_description = #{plantDescription,jdbcType=VARCHAR}
+    where plant_id = #{plantId,jdbcType=INTEGER}
+  </update>
+</mapper>
