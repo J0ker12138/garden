@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.garden.mapper" >
+
+	<!-- 查询全部动态 -->
+	<select id="selectDynamicList" resultType="com.garden.po.DynamicQueryVo" >
+		SELECT 
+		d.`dynamic_date`,
+		d.`dynamic_description`,
+		d.`dynamic_id`,
+		d.`dynamic_image`,
+		d.`dynamic_pointnum`,
+		d.`dynamic_viewnum`,
+		u.`user_image`,
+		u.`user_name`
+		FROM
+			`dynamic` d
+		LEFT JOIN `user` u ON u.`user_id` = d.`dynamic_userid` WHERE d.`dynamic_userid` = #{id};
+	</select>
+	
+	<!-- 添加动态 -->
+	<insert id="insertDynamic" parameterType="com.garden.po.DynamicAll">
+		 INSERT INTO `dynamic` (
+                          dynamic_userid,  
+                          dynamic_description,  
+                          dynamic_image  
+                          )  
+              VALUES   (#{dynamic_userid},  
+                          #{dynamic_userid},  
+                          #{dynamic_description},  
+                          #{dynamic_image},  
+                          );  
+	</insert>
+	
+	<!-- 点赞 -->
+	<update id="plusPointNum" parameterType="integer">
+		UPDATE 
+		  `dynamic` 
+		SET
+		  `dynamic_pointnum` = 'dynamic_pointnum' +1,
+		WHERE `dynamic_id` = #{id};
+	</update>
+	
+	<!-- 根据用户id查询用户动态 -->
+	<select id="findDynamicByUserId" parameterType="string" resultType="com.garden.po.DynamicAll">
+		SELECT 
+		d.`dynamic_date`,
+		d.`dynamic_description`,
+		d.`dynamic_id`,
+		d.`dynamic_image`,
+		d.`dynamic_pointnum`,
+		d.`dynamic_viewnum`,
+		FROM
+			`dynamic` d
+		WHERE d.`dynamic_userid` = #{id};
+	</select>
+	
+	<select id="findDynamicByDynamicId" parameterType="integer" resultType="com.garden.po.DynamicAll">
+		SELECT 
+		d.`dynamic_date`,
+		d.`dynamic_description`,
+		d.`dynamic_id`,
+		d.`dynamic_image`,
+		FROM
+			`dynamic` d
+		WHERE d.`dynamic_id` = #{id};
+	</select>
+	
+	<select id="findCommitByDynamicId" parameterType="integer" resultType="com.garden.po.CommentQueryVo">
+		SELECT 
+		c.`comment_date`,
+		c.`comment_description`,
+		c.`comment_id`,
+		c.`comment_pointnum`,
+		u.`user_image`,
+		u.`user_name`
+		FROM
+			`comment` c
+		LEFT JOIN `user` u ON u.`user_id` = c.`comment_userid` WHERE c.`comment_userid` = #{id};
+	</select>
+	
+	<insert id="addComment" parameterType="com.garden.po.Comment" >
+		INSERT INTO `comment` (
+		  `comment_dynamicid`,
+		  `comment_description`,
+		  `comment_userid`
+		) 
+		VALUES
+		  (
+		    #{comment_dynamicid},
+		    #{comment_description},
+		    #{comment_userid}
+		  ) ;
+				
+	</insert>
+	
+</mapper>
