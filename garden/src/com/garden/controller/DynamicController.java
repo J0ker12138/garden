@@ -96,6 +96,11 @@ public class DynamicController {
 		return dynamicService.findCommitByDynamicId(dynamicAll.getDynamic_id());
 	}
 	
+	/**
+	 * 添加评论
+	 * @param comment
+	 * @return
+	 */
 	@RequestMapping("/addComment")
 	public @ResponseBody Comment addComment(Comment comment) {
 		dynamicService.addComment(comment);
