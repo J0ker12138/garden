@@ -65,7 +65,7 @@ public class DynamicController {
 		dynamicService.plusPointNum(DynamicAll.getDynamic_id());
 		return DynamicAll;
 	}
-	
+
 	/**
 	 * 根据用户id查询该用户的动态
 	 * @param dynamicAll

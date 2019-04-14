@@ -11,11 +11,12 @@
 		d.`dynamic_image`,
 		d.`dynamic_pointnum`,
 		d.`dynamic_viewnum`,
+		d.`dynamic_userid`,
 		u.`user_image`,
 		u.`user_name`
 		FROM
 			`dynamic` d
-		LEFT JOIN `user` u ON u.`user_id` = d.`dynamic_userid` WHERE d.`dynamic_userid` = #{id};
+		LEFT JOIN `user` u ON u.`user_id` = d.`dynamic_userid`;
 	</select>
 	
 	<!-- 添加动态 -->
@@ -31,16 +32,16 @@
                           #{dynamic_image},  
                           );  
 	</insert>
-	
+
 	<!-- 点赞 -->
 	<update id="plusPointNum" parameterType="integer">
 		UPDATE 
 		  `dynamic` 
 		SET
-		  `dynamic_pointnum` = 'dynamic_pointnum' +1,
+		  `dynamic_pointnum` = `dynamic_pointnum` +1
 		WHERE `dynamic_id` = #{id};
 	</update>
-	
+
 	<!-- 根据用户id查询用户动态 -->
 	<select id="findDynamicByUserId" parameterType="string" resultType="com.garden.po.DynamicAll">
 		SELECT 
@@ -49,7 +50,7 @@
 		d.`dynamic_id`,
 		d.`dynamic_image`,
 		d.`dynamic_pointnum`,
-		d.`dynamic_viewnum`,
+		d.`dynamic_viewnum`
 		FROM
 			`dynamic` d
 		WHERE d.`dynamic_userid` = #{id};
@@ -60,7 +61,7 @@
 		d.`dynamic_date`,
 		d.`dynamic_description`,
 		d.`dynamic_id`,
-		d.`dynamic_image`,
+		d.`dynamic_image`
 		FROM
 			`dynamic` d
 		WHERE d.`dynamic_id` = #{id};
