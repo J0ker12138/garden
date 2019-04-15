@@ -2,6 +2,8 @@ package com.garden.po;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class Diarylog {
     private Integer logId;
 
@@ -14,8 +16,18 @@ public class Diarylog {
     private String logImage;
 
     private String logDescription;
+    private MultipartFile file;
+    
 
-    public Integer getLogId() {
+    public MultipartFile getFile() {
+		return file;
+	}
+
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
+
+	public Integer getLogId() {
         return logId;
     }
 

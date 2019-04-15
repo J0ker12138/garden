@@ -1,8 +1,11 @@
 package com.garden.controller;
 
-import java.net.HttpURLConnection;
 
-import org.json.JSONObject;
+
+
+
+
+import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,17 +20,18 @@ import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 public class UserController {
 		@Autowired
 		UserService userservice;
-		String appid="wx434fffa9cc16ad61";
-		String secret="ca5b714e13ebfafaf325c37324e5afd7";
+		String appid="wx33954bed3b72bf3c";
+		String secret="279f2dfe5182330c8146be980a5942b3";
+		
 		String url="https://api.weixin.qq.com/sns/jscode2session";
 		@RequestMapping("login")
-		public @ResponseBody User getUserMsg(String code) throws org.json.simple.parser.ParseException{
+		public @ResponseBody String getUserMsg(String code) throws org.json.simple.parser.ParseException{
 			String params = "appid=" + appid + "&secret=" + secret + "&js_code=" + code +
 
 	                "&grant_type=authorization_code";
 
-	        String result = com.garden.controller.HttpURLConnection.sendGet(url,params);
-	        System.out.println(result);
+	        String result = HttpURLConnection.sendGet(url,params);
+
 	        JSONObject json = null;
 
 	        String session_key=null;
@@ -36,7 +40,7 @@ public class UserController {
 
 	        User user = new User();
 
-	        System.out.println("进入");
+	        System.out.println(result);
 
 	        try {
 
@@ -51,7 +55,15 @@ public class UserController {
 	            e.printStackTrace();
 
 	        }
-			return user;
+	        userservice.addUser(openid);
+			return openid;
+
+			
+		}
+		@RequestMapping("addUserImageUrl")
+		public String addUserImageUrl(String userid,String userImage,String userName){
+			
+			return userservice.addUserImage(userid,userImage,userName);
 			
 		}
 }

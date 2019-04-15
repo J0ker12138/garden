@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -90,7 +91,7 @@ public class DiaryServiceImpl implements DiaryService {
 		List<DiaryQueryVo> diarylist=new ArrayList<>();
 		
 		if (list!=null) {
-			for (int i = 0; i < list.size(); i++) {
+			for  (int i = 0; i < list.size(); i++) {
 				List<DiarylogQueryVo> dialoglist=new ArrayList<>();
 				DiaryQueryVo dq=new DiaryQueryVo();
 				dq.setDiary(list.get(i));

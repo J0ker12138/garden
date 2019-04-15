@@ -1,0 +1,178 @@
+<navigator url="../choose/choose">
+    <view class="circle-float">
+    <image src="../../image/write.png"/>
+    </view>
+</navigator>
+
+<!--index.wxml-->
+<navigator url="../article/article">
+<view class="container">
+  <view class="slide">
+  <swiper
+  indicator-dots="true"
+  autoplay="true"
+  interval="8000"
+  duration="1000"
+>
+  <block wx:for="{{imgUrls}}">
+    <swiper-item>
+      <image src="{{item}}" class="slide-image" width="355" height="300" />
+    </swiper-item>
+  </block>
+</swiper>
+</view>
+
+<view class="contain">
+  <view class="divLine"></view>
+</view>
+ </view>
+ </navigator>
+
+ <view class="tr" >
+
+   <view class="td"> 
+        <image src="../../image/biji.png" />
+   </view>
+  <view class="divLine1"></view>
+
+   <view class="tr1">
+        <view class="board">
+           <scroll-view scroll-x class="scroll-header1">
+
+         <view wx:for="{{array1}}">
+         <navigator url="../detail/detail">
+          <view class="x3"><image src="{{item.imgArr1}}"/>
+        
+        </view>
+        </navigator>
+            
+         
+          </view>
+         </scroll-view>
+        </view>
+        
+   </view>
+
+  </view>
+
+  <view class="tr2" >
+   <view class="td2">
+      <image src="../../image/tuku.png"/>
+   </view>
+  <view class="divLine2"></view>
+   <view class="tr3">
+   <navigator url="../album/album">
+        <scroll-view scroll-x class="scroll-header">
+
+         <view wx:for="{{array}}">
+            <view class="x3"><image src="{{item.imgArr}}"/></view>
+            
+         
+          </view>
+         
+          <view id="red" class="scroll-view-item bc_red">
+              <view class="x3"><image src="https://img2018.cnblogs.com/blog/1238131/201904/1238131-20190403182454633-208795874.jpg"/></view>
+              
+          </view>
+          
+
+
+
+          <view id="yellow" class="scroll-view-item bc_yellow">
+              <view class="x3"><image src="https://img2018.cnblogs.com/blog/1238131/201904/1238131-20190403182435804-1440141718.jpg"/></view>
+          </view>
+          <view id="blue" class="scroll-view-item bc_blue">
+              <view class="x3"><image src="https://img2018.cnblogs.com/blog/1238131/201904/1238131-20190403182418664-246032430.jpg"/></view>
+          </view>
+          <view id="blue" class="scroll-view-item bc_blue">
+              <view class="x3"><image src="https://img2018.cnblogs.com/blog/1238131/201904/1238131-20190403182356657-243811745.jpg"/></view>
+          </view>
+          <view id="blue" class="scroll-view-item bc_blue">
+              <view class="x3"><image src="https://img2018.cnblogs.com/blog/1238131/201904/1238131-20190403182340135-193336783.jpg"/></view>
+          </view>
+          <view id="blue" class="scroll-view-item bc_blue">
+              <view class="x3"><image src="https://img2018.cnblogs.com/blog/1238131/201904/1238131-20190403182323329-1304534958.jpg"/></view>
+          </view>
+          <view id="blue" class="scroll-view-item bc_blue">
+              <view class="x3"><image src="https://img2018.cnblogs.com/blog/1238131/201904/1238131-20190403182305644-1789918961.jpg"/></view>
+          </view>
+          <view id="blue" class="scroll-view-item bc_blue">
+              <view class="x3"><image src="https://img2018.cnblogs.com/blog/1238131/201904/1238131-20190403182250298-497034468.jpg"/></view>
+          </view>
+          <view id="blue" class="scroll-view-item bc_blue">
+              <view class="x3"><image src="https://img2018.cnblogs.com/blog/1238131/201904/1238131-20190403182236559-1327605945.jpg"/></view>
+          </view>
+          </scroll-view>
+      </navigator>
+   </view>
+  </view>
+<view wx:for="{{array}}">
+   <view class="divLine3"></view>
+
+   <view class="tr5" >
+       <view class="td5">
+       <text class="hello">{{item.month}}</text><text class="hello1">{{item.date}}</text>
+       <view class="hello2"><image src="../../image/share.png"/></view>
+       </view>
+  
+       <view class="tr6">
+          <view class="td6"><text>{{item.version}}</text></view>
+          <view class="td7"><image class='img' src='{{item.imgArr}}'></image></view>
+       </view>
+   </view>
+   </view>
+
+
+    <view class="divLine3"></view>
+   <view class="tr5" >
+       <view class="td5">
+       <text class="hello">5月</text><text class="hello1">2日</text>
+       <view class="hello2"><image src="../../image/share.png"/></view>
+       </view>
+  
+       <view class="tr6">
+          <view class="td6"><text>今天天气真好.。。。。。</text></view>
+          <view class="td7"><image src="https://img2018.cnblogs.com/blog/1238131/201904/1238131-20190403182250298-497034468.jpg"/></view>
+       </view>
+   </view>
+    <view class="divLine3"></view>
+   <view class="tr5" >
+       <view class="td5">
+       <text class="hello">5月</text><text class="hello1">1日</text>
+       <view class="hello2"><image src="../../image/share.png"/></view>
+       </view>
+  
+       <view class="tr6">
+          <view class="td6"><text>今天天气真好.。。。。。</text></view>
+          <view class="td7"><image src="https://img2018.cnblogs.com/blog/1238131/201904/1238131-20190403182305644-1789918961.jpg"/></view>
+       </view>
+   </view>
+    <view class="divLine3"></view>
+   <view class="tr5" >
+       <view class="td5">
+       <text class="hello">4月</text><text class="hello1">31日</text>
+       <view class="hello2"><image src="../../image/share.png"/></view>
+       </view>
+  
+       <view class="tr6">
+          <view class="td6"><text>今天天气真好.。。。。。</text></view>
+          <view class="td7"><image src="https://img2018.cnblogs.com/blog/1238131/201904/1238131-20190403182323329-1304534958.jpg"/></view>
+       </view>
+   </view>
+    <view class="divLine3"></view>
+   <view class="tr5" >
+       <view class="td5">
+       <text class="hello">4月</text><text class="hello1">30日</text>
+       <view class="hello2"><image src="../../image/share.png"/></view>
+       </view>
+  
+       <view class="tr6">
+          <view class="td6"><text>今天天气真好.。。。。。</text></view>
+          <view class="td7"><image src="https://img2018.cnblogs.com/blog/1238131/201904/1238131-20190403182340135-193336783.jpg"/></view>
+       </view>
+   </view>
+
+
+<button wx:for="{{buttons}}" wx:key="*this" id="{{'btn'+index}}" bindtap='onchangeTab' class="{{tabIndex==index?'on':''}}">
+        {{item}}
+      </button>

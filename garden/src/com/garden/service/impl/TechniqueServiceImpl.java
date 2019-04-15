@@ -10,6 +10,7 @@ import com.garden.mapper.CollectionMapper;
 import com.garden.mapper.TechniqueMapper;
 import com.garden.mapper.UserMapper;
 import com.garden.po.Collection;
+import com.garden.po.CollectionExample;
 import com.garden.po.PlantQueryVo;
 import com.garden.po.Technique;
 import com.garden.po.TechniqueExample;
@@ -123,14 +124,59 @@ public class TechniqueServiceImpl implements TechniqueService {
 		return listvo;
 	}
 
-
-	@Override
-	public void collectTech(Integer techid, String userid) {
+@Override
+	public String collectTech(Integer techid, String userid,String buer) {
 		// TODO Auto-generated method stub
-		Collection co=new Collection();
-		co.setCollUserid(userid);
-		co.setCollDynamicid(techid);
+	Collection co=new Collection();
+	co.setCollDynamicid(techid);
+	co.setCollUserid(userid);
+	
+	if ("true".equals(buer)) {
+		
+		
+		
 		collectionmapper.insert(co);
+		return "ok";
+	}else{
+		CollectionExample ex=new CollectionExample();
+		ex.createCriteria().andCollDynamicidEqualTo(techid);
+		ex.createCriteria().andCollUseridEqualTo(userid);
+		collectionmapper.deleteByExample(ex);
+		return "fail";
 	}
+		
+	}
+
+
+@Override
+public String findcollection(String techid, String userid) {
+	// TODO Auto-generated method stub
+	Collection co=new Collection();
+	CollectionExample cex=new CollectionExample();
+	cex.createCriteria().andCollDynamicidEqualTo(Integer.parseInt(techid));
+	cex.createCriteria().andCollUseridEqualTo(userid);
+	List<Collection> list=new ArrayList<>();
+	list=collectionmapper.selectByExample(cex);
+	if (list.size()<1&&list!=null) {
+		return "true";
+	}
+	return "false";
+}
+@Override
+public List<TechniqueQueryVo> getMyCollectionList(String userid) {
+	// TODO Auto-generated method stub
+	List<TechniqueQueryVo> listvo=new ArrayList<>();
+	TechniqueExample tex=new TechniqueExample();
+	tex.createCriteria().andTechUseridEqualTo(userid);
+	List<Technique> list=techniquemapper.selectByExample(tex);
+	for (int i = 0; i < list.size(); i++) {
+		TechniqueQueryVo techvo=new TechniqueQueryVo();
+		techvo.setTech(list.get(i));
+		User u=new User();
+		listvo.add(techvo);
+		
+	}
+	return listvo;
+}
 
 }

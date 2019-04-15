@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.garden.mapper.NewDynamicMapper;
-import com.garden.po.Comment;
-import com.garden.po.CommentQueryVo;
 import com.garden.po.DynamicAll;
 import com.garden.po.DynamicQueryVo;
 import com.garden.service.DynamicService;
@@ -31,43 +29,16 @@ public class DynamicServiceImpl implements DynamicService {
 		newDynamicMapper.insertDynamic(dynamicAll);
 		return dynamicAll;
 	}
-	
-	/**
-	 * 点赞
-	 */
+	@Override
 	public void plusPointNum(Integer dynamicId) {
 		newDynamicMapper.plusPointNum(dynamicId);
 	}
-	/**
-	 * 根据用户id查找动态
-	 */
 	@Override
 	public List<DynamicAll> findDynamicByUserId(String UserId) {
 		return newDynamicMapper.findDynamicByUserId(UserId);
 	}
-	/**
-	 * 根据动态id查找详细动态
-	 */
 	@Override
 	public DynamicAll findDynamicByDynamicId(Integer DynamicId) {
 		return newDynamicMapper.findDynamicByDynamicId(DynamicId);
 	}
-	
-	/**
-	 * 根据动态id查评论
-	 */
-	@Override
-	public List<CommentQueryVo> findCommitByDynamicId(Integer DynamicId) {
-		return newDynamicMapper.findCommitByDynamicId(DynamicId);
-	}
-	
-	/**
-	 * 添加评论
-	 */
-	@Override
-	public void addComment(Comment comment) {
-		newDynamicMapper.addComment(comment);
-	}
-	
-	
 }

@@ -1,0 +1,31 @@
+
+ 
+ <view wx:for="{{array}}">
+ <view class="contain">
+     <!-- 分割线 -->
+  <view class="divLine"></view>
+</view>
+ <view class="tr5" >
+   <view class="td5"><image  class="userinfo-avatar1" mode="cover" src="{{item.imgArr}}"></image></view>
+  
+   <view class="tr6">
+   <view class="td6"><text class="hello">{{item.id}}</text></view>
+   <view class="td7"><text class='user_msg'>{{item.time}}</text></view>
+   </view>
+   
+   </view>
+   <view class="td8">
+        <text class="usg">点赞了这条评论</text>
+   </view>
+   <navigator url="../article/article">
+<view class="first">
+    <view class="style">
+       <image src="{{item.photo}}" background-size="cover"></image>
+    </view>
+    <view class="style1"> 
+    <text>{{item.write}}</text>
+    </view>
+    
+</view>
+</navigator>
+</view>

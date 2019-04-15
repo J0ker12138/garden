@@ -20,4 +20,32 @@ public class UserServiceImpl implements UserService{
 		return u;
 	}
 
+	@Override
+	public String addUserImage(String userid, String userImage,String userName) {
+		// TODO Auto-generated method stub
+		try {
+			User user=new User();
+			user.setUsername(userName);
+			user.setUserId(userid);
+			user.setUserImage(userImage);
+			UserExample uex=new UserExample();
+			uex.createCriteria().andUserIdEqualTo(userid);
+			usermapper.updateByExample(user, uex);
+			return "ok";
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return "fail";
+		
+		}
+	}
+
+	@Override
+	public void addUser(String openid) {
+		// TODO Auto-generated method stub
+		User u=new User();
+		u.setUserId(openid);
+		usermapper.insert(u);
+	}
+
 }

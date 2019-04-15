@@ -62,6 +62,5 @@ public class Comment {
 	public void setComment_userid(String comment_userid) {
 		this.comment_userid = comment_userid;
 	}
-	
     
 }
