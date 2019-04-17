@@ -39,7 +39,7 @@
 		  `dynamic` 
 		SET
 		  `dynamic_pointnum` = `dynamic_pointnum` +1
-		WHERE `dynamic_id` = #{id};
+		WHERE `dynamic_id` = #{DynamicId};
 	</update>
 
 	<!-- 根据用户id查询用户动态 -->
@@ -53,9 +53,9 @@
 		d.`dynamic_viewnum`
 		FROM
 			`dynamic` d
-		WHERE d.`dynamic_userid` = #{id};
+		WHERE d.`dynamic_userid` = #{UserId};
 	</select>
-	
+	<!-- 根据动态id查询详细动态 -->
 	<select id="findDynamicByDynamicId" parameterType="integer" resultType="com.garden.po.DynamicAll">
 		SELECT 
 		d.`dynamic_date`,
@@ -64,9 +64,10 @@
 		d.`dynamic_image`
 		FROM
 			`dynamic` d
-		WHERE d.`dynamic_id` = #{id};
+		WHERE d.`dynamic_id` = #{DynamicId};
 	</select>
 	
+	<!-- 根据动态id查询评论 -->
 	<select id="findCommitByDynamicId" parameterType="integer" resultType="com.garden.po.CommentQueryVo">
 		SELECT 
 		c.`comment_date`,
@@ -80,6 +81,7 @@
 		LEFT JOIN `user` u ON u.`user_id` = c.`comment_userid` WHERE c.`comment_userid` = #{id};
 	</select>
 	
+	<!-- 添加评论 -->
 	<insert id="addComment" parameterType="com.garden.po.Comment" >
 		INSERT INTO `comment` (
 		  `comment_dynamicid`,
@@ -92,7 +94,16 @@
 		    #{comment_description},
 		    #{comment_userid}
 		  ) ;
-				
 	</insert>
 	
+	<!-- 查看数+1 -->
+	<update id="plusWatchNum" parameterType="integer">
+		UPDATE 
+		  `dynamic` 
+		SET
+		  `dynamic_viewnum` = `dynamic_viewnum`+1
+		WHERE `dynamic_id` = #{DynamicId} ;
+				
+	</update>
+
 </mapper>

@@ -47,9 +47,11 @@ public class DynamicServiceImpl implements DynamicService {
 	}
 	/**
 	 * 根据动态id查找详细动态
+	 * 根据动态id浏览数+1
 	 */
 	@Override
 	public DynamicAll findDynamicByDynamicId(Integer DynamicId) {
+		newDynamicMapper.plusWatchNum(DynamicId);
 		return newDynamicMapper.findDynamicByDynamicId(DynamicId);
 	}
 	
@@ -68,6 +70,8 @@ public class DynamicServiceImpl implements DynamicService {
 	public void addComment(Comment comment) {
 		newDynamicMapper.addComment(comment);
 	}
+	
+
 	
 	
 }

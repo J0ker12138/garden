@@ -37,6 +37,7 @@ public interface DynamicService {
 	
 	/**
 	 * 根据动态id查询详细动态
+	 * 根据动态id浏览数+1
 	 * @param DynamicId
 	 * @return
 	 */
@@ -55,4 +56,5 @@ public interface DynamicService {
 	 */
 	public void addComment(Comment comment);
 	
+
 }

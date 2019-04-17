@@ -55,4 +55,10 @@ public interface NewDynamicMapper {
 	 * @param comment
 	 */
 	public void addComment(Comment comment);
+	
+	/**
+	 * 根据动态id增加浏览数
+	 * @param DynamicId
+	 */
+	public void plusWatchNum(Integer DynamicId);
 }

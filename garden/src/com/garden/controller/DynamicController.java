@@ -85,7 +85,7 @@ public class DynamicController {
 	public @ResponseBody DynamicAll findDynamicByDynamicId(@RequestBody DynamicAll dynamicAll) {
 		return dynamicService.findDynamicByDynamicId(dynamicAll.getDynamic_id());
 	}
-	
+
 	/**
 	 * 根据动态id查询评论
 	 * @param dynamicAll
@@ -95,7 +95,7 @@ public class DynamicController {
 	public @ResponseBody List<CommentQueryVo> findCommitByDynamicId(@RequestBody DynamicAll dynamicAll){
 		return dynamicService.findCommitByDynamicId(dynamicAll.getDynamic_id());
 	}
-	
+
 	/**
 	 * 添加评论
 	 * @param comment
