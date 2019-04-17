@@ -52,14 +52,26 @@ public class TechniqueController {
 		return vo;
 		
 	}
+	@RequestMapping(value="/findcollection")
+	public @ResponseBody String findcollection(String techid,String userid){
+		String s=techservice.findcollection(techid,userid);
+		return s;
+		
+	}
+	@RequestMapping(value="/getMyCollectionList")
+	public @ResponseBody List<TechniqueQueryVo> getMyCollectionList(String userid){
+		List<TechniqueQueryVo> list=techservice.getMyCollectionList(userid);
+		return list;
+		
+	}
 	@RequestMapping(value="/collectTechById")
-	public @ResponseBody String getTechById(Integer techid,String userid){
+	public @ResponseBody String getTechById(Integer techid,String userid,String buer){
+		System.out.println(techid.toString()+userid+buer);
 		try {
-			techservice.collectTech(techid,userid);
+			return techservice.collectTech(techid,userid,buer);
 		} catch (Exception e) {
 			return "fail";
 		}
-		return "success";
 		
 		
 	}

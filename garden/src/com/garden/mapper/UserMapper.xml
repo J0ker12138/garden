@@ -5,6 +5,7 @@
     <id column="user_id" property="userId" jdbcType="VARCHAR" />
     <result column="user_name" property="userName" jdbcType="VARCHAR" />
     <result column="user_image" property="userImage" jdbcType="VARCHAR" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -65,7 +66,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    user_id, user_name, user_image
+    user_id, user_name, user_image, username
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.garden.po.UserExample" >
     select
@@ -98,10 +99,10 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.garden.po.User" >
-    insert into user (user_id, user_name, user_image
-      )
-    values (#{userId,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{userImage,jdbcType=VARCHAR}
-      )
+    insert into user (user_id, user_name, user_image, 
+      username)
+    values (#{userId,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{userImage,jdbcType=VARCHAR}, 
+      #{username,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.garden.po.User" >
     insert into user
@@ -115,6 +116,9 @@
       <if test="userImage != null" >
         user_image,
       </if>
+      <if test="username != null" >
+        username,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="userId != null" >
@@ -125,6 +129,9 @@
       </if>
       <if test="userImage != null" >
         #{userImage,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -146,6 +153,9 @@
       <if test="record.userImage != null" >
         user_image = #{record.userImage,jdbcType=VARCHAR},
       </if>
+      <if test="record.username != null" >
+        username = #{record.username,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -155,7 +165,8 @@
     update user
     set user_id = #{record.userId,jdbcType=VARCHAR},
       user_name = #{record.userName,jdbcType=VARCHAR},
-      user_image = #{record.userImage,jdbcType=VARCHAR}
+      user_image = #{record.userImage,jdbcType=VARCHAR},
+      username = #{record.username,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -169,13 +180,17 @@
       <if test="userImage != null" >
         user_image = #{userImage,jdbcType=VARCHAR},
       </if>
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
     </set>
     where user_id = #{userId,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.garden.po.User" >
     update user
     set user_name = #{userName,jdbcType=VARCHAR},
-      user_image = #{userImage,jdbcType=VARCHAR}
+      user_image = #{userImage,jdbcType=VARCHAR},
+      username = #{username,jdbcType=VARCHAR}
     where user_id = #{userId,jdbcType=VARCHAR}
   </update>
 </mapper>

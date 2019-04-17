@@ -106,7 +106,7 @@ public OSSClientUtil() {
     try {
       InputStream inputStream = file.getInputStream();
       this.uploadFile2OSS(inputStream, name);
-      return "https://" + this.bucketName+"."+this.endpoint+ "//" + filedir+name;
+      return "https://" + this.bucketName+"."+this.endpoint+ "//" + filedir+"test/"+name;
      
     } catch (Exception e) {
       throw new Exception("图片上传失败");
@@ -144,7 +144,7 @@ public OSSClientUtil() {
       objectMetadata.setContentType(getcontentType(fileName.substring(fileName.lastIndexOf("."))));
       objectMetadata.setContentDisposition("inline;filename=" + fileName);
       //上传文件
-      PutObjectResult putResult = ossClient.putObject(bucketName, filedir + fileName, instream, objectMetadata);
+      PutObjectResult putResult = ossClient.putObject(bucketName, filedir +"test/"+ fileName, instream, objectMetadata);
       ret = putResult.getETag();
     } catch (IOException e) {
       log.error(e.getMessage(), e);

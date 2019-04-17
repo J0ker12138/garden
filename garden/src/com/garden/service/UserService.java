@@ -9,4 +9,12 @@ public interface UserService {
 	 * @return
 	 */
 		public User getUserById(String userid);
+
+
+
+	public String addUserImage(String userid, String userImage, String userName);
+
+
+
+	public void addUser(String openid);
 }
