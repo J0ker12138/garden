@@ -25,6 +25,7 @@ public class DynamicController {
 	public @ResponseBody List<DynamicQueryVo> selectDynamicList(){
 		return dynamicService.selectDynamicList();
 	}
+	
 	/**
 	 * 添加动态
 	 * @param dynamicAll
@@ -36,16 +37,23 @@ public class DynamicController {
 		dynamicService.insertDynamic(dynamicAll);
 		return dynamicAll;
 	}
+	
 	/**
 	 * 点赞
 	 * @param dynamicId
 	 */
 	@RequestMapping("/plusPointNum")
-	public @ResponseBody DynamicAll plusPointNum(@RequestBody DynamicAll DynamicAll) {
-		dynamicService.plusPointNum(DynamicAll.getDynamic_id());
-		return DynamicAll;
+	public @ResponseBody DynamicAll plusPointNum(@RequestBody DynamicAll dynamicAll) {
+		dynamicService.plusPointNum(dynamicAll.getDynamic_id());
+		return dynamicAll;
 	}
 	
+	@RequestMapping("/delPointNum")
+	public @ResponseBody DynamicAll delPointNum(@RequestBody DynamicAll dynamicAll) {
+		dynamicService.delPointNum(dynamicAll.getDynamic_id());
+		return dynamicAll;
+	}
+
 	/**
 	 * 根据用户id查询该用户的动态
 	 * @param dynamicAll
@@ -65,30 +73,6 @@ public class DynamicController {
 	public @ResponseBody DynamicAll findDynamicByDynamicId(@RequestBody DynamicAll dynamicAll) {
 		return dynamicService.findDynamicByDynamicId(dynamicAll.getDynamic_id());
 	}
-<<<<<<< HEAD
-
-	/**
-	 * 根据动态id查询评论
-	 * @param dynamicAll
-	 * @return
-	 */
-	@RequestMapping("/findCommitByDynamicId")
-	public @ResponseBody List<CommentQueryVo> findCommitByDynamicId(@RequestBody DynamicAll dynamicAll){
-		return dynamicService.findCommitByDynamicId(dynamicAll.getDynamic_id());
-	}
-
-	/**
-	 * 添加评论
-	 * @param comment
-	 * @return
-	 */
-	@RequestMapping("/addComment")
-	public @ResponseBody Comment addComment(Comment comment) {
-		dynamicService.addComment(comment);
-		return comment;
-	}
-=======
 	
 	
->>>>>>> 7ed14d4daac6de30667c83dab5c5c4761157726b
 }

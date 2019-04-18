@@ -13,10 +13,8 @@
     <result column="diary_temperature" property="diaryTemperature" jdbcType="VARCHAR" />
     <result column="diary_soil" property="diarySoil" jdbcType="VARCHAR" />
     <result column="diary_time" property="diaryTime" jdbcType="VARCHAR" />
+    <result column="diary_image" property="diaryImage" jdbcType="VARCHAR" />
     <result column="diary_pointnum" property="diaryPointnum" jdbcType="INTEGER" />
-  </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.garden.po.Diary" extends="BaseResultMap" >
-    <result column="diary_image" property="diaryImage" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -78,27 +76,8 @@
   </sql>
   <sql id="Base_Column_List" >
     diary_id, diary_userid, diary_plantname, diary_space, diary_method, diary_city, diary_sun, 
-    diary_water, diary_temperature, diary_soil, diary_time, diary_pointnum
+    diary_water, diary_temperature, diary_soil, diary_time, diary_image, diary_pointnum
   </sql>
-  <sql id="Blob_Column_List" >
-    diary_image
-  </sql>
-  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.garden.po.DiaryExample" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from diary
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null" >
-      order by ${orderByClause}
-    </if>
-  </select>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.garden.po.DiaryExample" >
     select
     <if test="distinct" >
@@ -113,11 +92,9 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
     from diary
     where diary_id = #{diaryId,jdbcType=INTEGER}
   </select>
@@ -135,13 +112,13 @@
     insert into diary (diary_id, diary_userid, diary_plantname, 
       diary_space, diary_method, diary_city, 
       diary_sun, diary_water, diary_temperature, 
-      diary_soil, diary_time, diary_pointnum, 
-      diary_image)
+      diary_soil, diary_time, diary_image, 
+      diary_pointnum)
     values (#{diaryId,jdbcType=INTEGER}, #{diaryUserid,jdbcType=VARCHAR}, #{diaryPlantname,jdbcType=VARCHAR}, 
       #{diarySpace,jdbcType=VARCHAR}, #{diaryMethod,jdbcType=VARCHAR}, #{diaryCity,jdbcType=VARCHAR}, 
       #{diarySun,jdbcType=VARCHAR}, #{diaryWater,jdbcType=VARCHAR}, #{diaryTemperature,jdbcType=VARCHAR}, 
-      #{diarySoil,jdbcType=VARCHAR}, #{diaryTime,jdbcType=VARCHAR}, #{diaryPointnum,jdbcType=INTEGER}, 
-      #{diaryImage,jdbcType=LONGVARCHAR})
+      #{diarySoil,jdbcType=VARCHAR}, #{diaryTime,jdbcType=VARCHAR}, #{diaryImage,jdbcType=VARCHAR}, 
+      #{diaryPointnum,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.garden.po.Diary" >
     insert into diary
@@ -179,11 +156,11 @@
       <if test="diaryTime != null" >
         diary_time,
       </if>
-      <if test="diaryPointnum != null" >
-        diary_pointnum,
-      </if>
       <if test="diaryImage != null" >
         diary_image,
+      </if>
+      <if test="diaryPointnum != null" >
+        diary_pointnum,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -220,11 +197,11 @@
       <if test="diaryTime != null" >
         #{diaryTime,jdbcType=VARCHAR},
       </if>
+      <if test="diaryImage != null" >
+        #{diaryImage,jdbcType=VARCHAR},
+      </if>
       <if test="diaryPointnum != null" >
         #{diaryPointnum,jdbcType=INTEGER},
-      </if>
-      <if test="diaryImage != null" >
-        #{diaryImage,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
@@ -270,32 +247,13 @@
       <if test="record.diaryTime != null" >
         diary_time = #{record.diaryTime,jdbcType=VARCHAR},
       </if>
+      <if test="record.diaryImage != null" >
+        diary_image = #{record.diaryImage,jdbcType=VARCHAR},
+      </if>
       <if test="record.diaryPointnum != null" >
         diary_pointnum = #{record.diaryPointnum,jdbcType=INTEGER},
       </if>
-      <if test="record.diaryImage != null" >
-        diary_image = #{record.diaryImage,jdbcType=LONGVARCHAR},
-      </if>
     </set>
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExampleWithBLOBs" parameterType="map" >
-    update diary
-    set diary_id = #{record.diaryId,jdbcType=INTEGER},
-      diary_userid = #{record.diaryUserid,jdbcType=VARCHAR},
-      diary_plantname = #{record.diaryPlantname,jdbcType=VARCHAR},
-      diary_space = #{record.diarySpace,jdbcType=VARCHAR},
-      diary_method = #{record.diaryMethod,jdbcType=VARCHAR},
-      diary_city = #{record.diaryCity,jdbcType=VARCHAR},
-      diary_sun = #{record.diarySun,jdbcType=VARCHAR},
-      diary_water = #{record.diaryWater,jdbcType=VARCHAR},
-      diary_temperature = #{record.diaryTemperature,jdbcType=VARCHAR},
-      diary_soil = #{record.diarySoil,jdbcType=VARCHAR},
-      diary_time = #{record.diaryTime,jdbcType=VARCHAR},
-      diary_pointnum = #{record.diaryPointnum,jdbcType=INTEGER},
-      diary_image = #{record.diaryImage,jdbcType=LONGVARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -313,6 +271,7 @@
       diary_temperature = #{record.diaryTemperature,jdbcType=VARCHAR},
       diary_soil = #{record.diarySoil,jdbcType=VARCHAR},
       diary_time = #{record.diaryTime,jdbcType=VARCHAR},
+      diary_image = #{record.diaryImage,jdbcType=VARCHAR},
       diary_pointnum = #{record.diaryPointnum,jdbcType=INTEGER}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -351,29 +310,13 @@
       <if test="diaryTime != null" >
         diary_time = #{diaryTime,jdbcType=VARCHAR},
       </if>
+      <if test="diaryImage != null" >
+        diary_image = #{diaryImage,jdbcType=VARCHAR},
+      </if>
       <if test="diaryPointnum != null" >
         diary_pointnum = #{diaryPointnum,jdbcType=INTEGER},
       </if>
-      <if test="diaryImage != null" >
-        diary_image = #{diaryImage,jdbcType=LONGVARCHAR},
-      </if>
     </set>
-    where diary_id = #{diaryId,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.garden.po.Diary" >
-    update diary
-    set diary_userid = #{diaryUserid,jdbcType=VARCHAR},
-      diary_plantname = #{diaryPlantname,jdbcType=VARCHAR},
-      diary_space = #{diarySpace,jdbcType=VARCHAR},
-      diary_method = #{diaryMethod,jdbcType=VARCHAR},
-      diary_city = #{diaryCity,jdbcType=VARCHAR},
-      diary_sun = #{diarySun,jdbcType=VARCHAR},
-      diary_water = #{diaryWater,jdbcType=VARCHAR},
-      diary_temperature = #{diaryTemperature,jdbcType=VARCHAR},
-      diary_soil = #{diarySoil,jdbcType=VARCHAR},
-      diary_time = #{diaryTime,jdbcType=VARCHAR},
-      diary_pointnum = #{diaryPointnum,jdbcType=INTEGER},
-      diary_image = #{diaryImage,jdbcType=LONGVARCHAR}
     where diary_id = #{diaryId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.garden.po.Diary" >
@@ -388,6 +331,7 @@
       diary_temperature = #{diaryTemperature,jdbcType=VARCHAR},
       diary_soil = #{diarySoil,jdbcType=VARCHAR},
       diary_time = #{diaryTime,jdbcType=VARCHAR},
+      diary_image = #{diaryImage,jdbcType=VARCHAR},
       diary_pointnum = #{diaryPointnum,jdbcType=INTEGER}
     where diary_id = #{diaryId,jdbcType=INTEGER}
   </update>

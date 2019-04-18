@@ -37,39 +37,12 @@ public class DynamicServiceImpl implements DynamicService {
 	public List<DynamicAll> findDynamicByUserId(String UserId) {
 		return newDynamicMapper.findDynamicByUserId(UserId);
 	}
-<<<<<<< HEAD
-	/**
-	 * 根据动态id查找详细动态
-	 * 根据动态id浏览数+1
-	 */
-=======
->>>>>>> 7ed14d4daac6de30667c83dab5c5c4761157726b
 	@Override
 	public DynamicAll findDynamicByDynamicId(Integer DynamicId) {
-		newDynamicMapper.plusWatchNum(DynamicId);
 		return newDynamicMapper.findDynamicByDynamicId(DynamicId);
 	}
-<<<<<<< HEAD
-	
-	/**
-	 * 根据动态id查评论
-	 */
 	@Override
-	public List<CommentQueryVo> findCommitByDynamicId(Integer DynamicId) {
-		return newDynamicMapper.findCommitByDynamicId(DynamicId);
+	public void delPointNum(Integer dynamicId) {
+		newDynamicMapper.delPointNum(dynamicId);
 	}
-	
-	/**
-	 * 添加评论
-	 */
-	@Override
-	public void addComment(Comment comment) {
-		newDynamicMapper.addComment(comment);
-	}
-	
-
-	
-	
-=======
->>>>>>> 7ed14d4daac6de30667c83dab5c5c4761157726b
 }

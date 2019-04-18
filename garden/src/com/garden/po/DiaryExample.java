@@ -864,6 +864,76 @@ public class DiaryExample {
             return (Criteria) this;
         }
 
+        public Criteria andDiaryImageIsNull() {
+            addCriterion("diary_image is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDiaryImageIsNotNull() {
+            addCriterion("diary_image is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDiaryImageEqualTo(String value) {
+            addCriterion("diary_image =", value, "diaryImage");
+            return (Criteria) this;
+        }
+
+        public Criteria andDiaryImageNotEqualTo(String value) {
+            addCriterion("diary_image <>", value, "diaryImage");
+            return (Criteria) this;
+        }
+
+        public Criteria andDiaryImageGreaterThan(String value) {
+            addCriterion("diary_image >", value, "diaryImage");
+            return (Criteria) this;
+        }
+
+        public Criteria andDiaryImageGreaterThanOrEqualTo(String value) {
+            addCriterion("diary_image >=", value, "diaryImage");
+            return (Criteria) this;
+        }
+
+        public Criteria andDiaryImageLessThan(String value) {
+            addCriterion("diary_image <", value, "diaryImage");
+            return (Criteria) this;
+        }
+
+        public Criteria andDiaryImageLessThanOrEqualTo(String value) {
+            addCriterion("diary_image <=", value, "diaryImage");
+            return (Criteria) this;
+        }
+
+        public Criteria andDiaryImageLike(String value) {
+            addCriterion("diary_image like", value, "diaryImage");
+            return (Criteria) this;
+        }
+
+        public Criteria andDiaryImageNotLike(String value) {
+            addCriterion("diary_image not like", value, "diaryImage");
+            return (Criteria) this;
+        }
+
+        public Criteria andDiaryImageIn(List<String> values) {
+            addCriterion("diary_image in", values, "diaryImage");
+            return (Criteria) this;
+        }
+
+        public Criteria andDiaryImageNotIn(List<String> values) {
+            addCriterion("diary_image not in", values, "diaryImage");
+            return (Criteria) this;
+        }
+
+        public Criteria andDiaryImageBetween(String value1, String value2) {
+            addCriterion("diary_image between", value1, value2, "diaryImage");
+            return (Criteria) this;
+        }
+
+        public Criteria andDiaryImageNotBetween(String value1, String value2) {
+            addCriterion("diary_image not between", value1, value2, "diaryImage");
+            return (Criteria) this;
+        }
+
         public Criteria andDiaryPointnumIsNull() {
             addCriterion("diary_pointnum is null");
             return (Criteria) this;

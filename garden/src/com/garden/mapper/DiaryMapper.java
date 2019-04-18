@@ -16,21 +16,15 @@ public interface DiaryMapper {
 
     int insertSelective(Diary record);
 
-    List<Diary> selectByExampleWithBLOBs(DiaryExample example);
-
     List<Diary> selectByExample(DiaryExample example);
 
     Diary selectByPrimaryKey(Integer diaryId);
 
     int updateByExampleSelective(@Param("record") Diary record, @Param("example") DiaryExample example);
 
-    int updateByExampleWithBLOBs(@Param("record") Diary record, @Param("example") DiaryExample example);
-
     int updateByExample(@Param("record") Diary record, @Param("example") DiaryExample example);
 
     int updateByPrimaryKeySelective(Diary record);
-
-    int updateByPrimaryKeyWithBLOBs(Diary record);
 
     int updateByPrimaryKey(Diary record);
 }

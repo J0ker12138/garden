@@ -33,7 +33,7 @@
                           );  
 	</insert>
 
-	<!-- 点赞 -->
+	<!-- 点赞+ -->
 	<update id="plusPointNum" parameterType="integer">
 		UPDATE 
 		  `dynamic` 
@@ -104,6 +104,15 @@
 		  `dynamic_viewnum` = `dynamic_viewnum`+1
 		WHERE `dynamic_id` = #{DynamicId} ;
 				
+	</update>
+	
+	<!-- 点赞- -->
+	<update id="delPointNum" parameterType="integer">
+		UPDATE 
+		  `dynamic` 
+		SET
+		  `dynamic_pointnum` = `dynamic_pointnum` -1
+		WHERE `dynamic_id` = #{DynamicId};
 	</update>
 
 </mapper>

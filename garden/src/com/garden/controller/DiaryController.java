@@ -71,9 +71,10 @@ public class DiaryController {
 	 */
 	
 	@RequestMapping(value="/createDiary")
-	public @ResponseBody String createDiary(DiarylogQueryVo diarylog ,MultipartFile file) throws Exception{
-		
-		/*String url="";
+	public @ResponseBody String createDiary(Diary diary ,MultipartFile file) throws Exception{
+		DiaryQueryVo vo=new DiaryQueryVo();
+		vo.setDiary(diary);
+		String url="";
 		try {
 			if (!file.isEmpty()) {
 				url=ossutil.uploadImg2Oss(file);
@@ -81,14 +82,13 @@ public class DiaryController {
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			diaryService.addDiary(diaryvo);
+			diaryService.addDiary(vo);
 			e.printStackTrace();
 		}
-		diaryvo.getDiary().setDiaryImage(url);
+		vo.getDiary().setDiaryImage(url);
 	
-		diaryService.addDiary(diaryvo);*/
-		
-		System.out.println(diarylog.getDiarylog().getLogDescription());
+		diaryService.addDiary(vo);
+		System.out.println(url);
 		return "ok";
 	
 	}
@@ -176,10 +176,17 @@ public class DiaryController {
 		
 	}
 	@RequestMapping(value="/updateDiary")
-	public @ResponseBody DiaryQueryVo updateDiary(@RequestBody DiaryQueryVo dia){
-		diaryService.updateDiary(dia);		
+	public @ResponseBody String updateDiary(@RequestBody DiaryQueryVo dia){
+		try {
+			diaryService.updateDiary(dia);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			
+			e.printStackTrace();
+			return "fail";
+		}		
 		
-		return dia;
+		return "ok";
 		
 	}
 	@RequestMapping(value="/index")

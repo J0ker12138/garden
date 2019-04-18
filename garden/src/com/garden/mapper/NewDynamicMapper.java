@@ -18,10 +18,15 @@ public interface NewDynamicMapper {
 	 */
 	public void insertDynamic(DynamicAll dynamicAll);
 	/**
-	 * 点赞
+	 * 点赞+
 	 * @param dynamicId
 	 */
 	public void plusPointNum(Integer dynamicId);
+	/**
+	 * 点赞-
+	 * @param dynamicId
+	 */
+	public void delPointNum(Integer dynamicId);
 	/**
 	 * 根据用户id查询用户动态
 	 * @param userId
@@ -34,27 +39,10 @@ public interface NewDynamicMapper {
 	 * @return
 	 */
 	public DynamicAll findDynamicByDynamicId(Integer DynamicId);
-	
-<<<<<<< HEAD
 	/**
-	 * 根据动态查找回复
+	 * 根据动态id查询评论
 	 * @param DynamicId
 	 * @return
 	 */
-	public List<CommentQueryVo> findCommitByDynamicId(Integer DynamicId);
-	
-	/**
-	 * 添加评论
-	 * @param comment
-	 */
-	public void addComment(Comment comment);
-	
-	/**
-	 * 根据动态id增加浏览数
-	 * @param DynamicId
-	 */
-	public void plusWatchNum(Integer DynamicId);
-=======
 	public List<Comment> findCommitByDynamicId(Integer DynamicId);
->>>>>>> 7ed14d4daac6de30667c83dab5c5c4761157726b
 }

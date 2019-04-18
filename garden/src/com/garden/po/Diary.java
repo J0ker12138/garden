@@ -23,9 +23,9 @@ public class Diary {
 
     private String diaryTime;
 
-    private Integer diaryPointnum;
-
     private String diaryImage;
+
+    private Integer diaryPointnum;
 
     public Integer getDiaryId() {
         return diaryId;
@@ -115,19 +115,19 @@ public class Diary {
         this.diaryTime = diaryTime == null ? null : diaryTime.trim();
     }
 
-    public Integer getDiaryPointnum() {
-        return diaryPointnum;
-    }
-
-    public void setDiaryPointnum(Integer diaryPointnum) {
-        this.diaryPointnum = diaryPointnum;
-    }
-
     public String getDiaryImage() {
         return diaryImage;
     }
 
     public void setDiaryImage(String diaryImage) {
         this.diaryImage = diaryImage == null ? null : diaryImage.trim();
+    }
+
+    public Integer getDiaryPointnum() {
+        return diaryPointnum;
+    }
+
+    public void setDiaryPointnum(Integer diaryPointnum) {
+        this.diaryPointnum = diaryPointnum;
     }
 }
