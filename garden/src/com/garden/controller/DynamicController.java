@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.garden.po.CommentQueryVo;
 import com.garden.po.DynamicAll;
 import com.garden.po.DynamicQueryVo;
 import com.garden.service.DynamicService;
@@ -21,7 +22,7 @@ public class DynamicController {
 	 * 查询全部动态
 	 * @return
 	 */
-	@RequestMapping("/selectDynamic")
+	@RequestMapping("selectDynamic")
 	public @ResponseBody List<DynamicQueryVo> selectDynamicList(){
 		return dynamicService.selectDynamicList();
 	}
@@ -39,7 +40,7 @@ public class DynamicController {
 	}
 	
 	/**
-	 * 点赞
+	 * 点赞+
 	 * @param dynamicId
 	 */
 	@RequestMapping("/plusPointNum")
@@ -48,6 +49,11 @@ public class DynamicController {
 		return dynamicAll;
 	}
 	
+	/**
+	 * 点赞-
+	 * @param dynamicAll
+	 * @return
+	 */
 	@RequestMapping("/delPointNum")
 	public @ResponseBody DynamicAll delPointNum(@RequestBody DynamicAll dynamicAll) {
 		dynamicService.delPointNum(dynamicAll.getDynamic_id());
@@ -71,8 +77,19 @@ public class DynamicController {
 	 */
 	@RequestMapping("/findDynamicByDynamicId")
 	public @ResponseBody DynamicAll findDynamicByDynamicId(@RequestBody DynamicAll dynamicAll) {
+		//根据动态id增加浏览量
+		dynamicService.plusWatchNum(dynamicAll.getDynamic_id());
 		return dynamicService.findDynamicByDynamicId(dynamicAll.getDynamic_id());
 	}
 	
+	/**
+	 * 根据动态id查询评论
+	 * @param dynamicAll
+	 * @return
+	 */
+	@RequestMapping("/findCommentByDynamicId")
+	public @ResponseBody List<CommentQueryVo> findCommentByDynamicId(@RequestBody DynamicAll dynamicAll) {
+		return dynamicService.findCommentByDynamicId(dynamicAll.getDynamic_id());
+	}
 	
 }
