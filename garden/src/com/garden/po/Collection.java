@@ -5,6 +5,8 @@ public class Collection {
 
     private Integer collDynamicid;
 
+    private Integer collPlantid;
+
     public String getCollUserid() {
         return collUserid;
     }
@@ -19,5 +21,13 @@ public class Collection {
 
     public void setCollDynamicid(Integer collDynamicid) {
         this.collDynamicid = collDynamicid;
+    }
+
+    public Integer getCollPlantid() {
+        return collPlantid;
+    }
+
+    public void setCollPlantid(Integer collPlantid) {
+        this.collPlantid = collPlantid;
     }
 }

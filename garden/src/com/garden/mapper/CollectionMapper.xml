@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="com.garden.po.Collection" >
     <result column="coll_userid" property="collUserid" jdbcType="VARCHAR" />
     <result column="coll_dynamicid" property="collDynamicid" jdbcType="INTEGER" />
+    <result column="coll_plantid" property="collPlantid" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -64,7 +65,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    coll_userid, coll_dynamicid
+    coll_userid, coll_dynamicid, coll_plantid
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.garden.po.CollectionExample" >
     select
@@ -87,8 +88,10 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.garden.po.Collection" >
-    insert into collection (coll_userid, coll_dynamicid)
-    values (#{collUserid,jdbcType=VARCHAR}, #{collDynamicid,jdbcType=INTEGER})
+    insert into collection (coll_userid, coll_dynamicid, coll_plantid
+      )
+    values (#{collUserid,jdbcType=VARCHAR}, #{collDynamicid,jdbcType=INTEGER}, #{collPlantid,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.garden.po.Collection" >
     insert into collection
@@ -99,6 +102,9 @@
       <if test="collDynamicid != null" >
         coll_dynamicid,
       </if>
+      <if test="collPlantid != null" >
+        coll_plantid,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="collUserid != null" >
@@ -106,6 +112,9 @@
       </if>
       <if test="collDynamicid != null" >
         #{collDynamicid,jdbcType=INTEGER},
+      </if>
+      <if test="collPlantid != null" >
+        #{collPlantid,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -124,6 +133,9 @@
       <if test="record.collDynamicid != null" >
         coll_dynamicid = #{record.collDynamicid,jdbcType=INTEGER},
       </if>
+      <if test="record.collPlantid != null" >
+        coll_plantid = #{record.collPlantid,jdbcType=INTEGER},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -132,7 +144,8 @@
   <update id="updateByExample" parameterType="map" >
     update collection
     set coll_userid = #{record.collUserid,jdbcType=VARCHAR},
-      coll_dynamicid = #{record.collDynamicid,jdbcType=INTEGER}
+      coll_dynamicid = #{record.collDynamicid,jdbcType=INTEGER},
+      coll_plantid = #{record.collPlantid,jdbcType=INTEGER}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>

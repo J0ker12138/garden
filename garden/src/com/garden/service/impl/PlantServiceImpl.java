@@ -8,8 +8,11 @@ import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.garden.mapper.CollectionMapper;
 import com.garden.mapper.PlantMapper;
 import com.garden.mapper.TechniqueMapper;
+import com.garden.po.Collection;
+import com.garden.po.CollectionExample;
 import com.garden.po.Plant;
 import com.garden.po.PlantExample;
 import com.garden.po.PlantQueryVo;
@@ -23,6 +26,8 @@ import com.garden.service.TechniqueService;
 public class PlantServiceImpl implements PlantService {
 	@Autowired
 	PlantMapper plantMapper;
+	@Autowired
+	CollectionMapper collmapper;
 
 	@Override
 	public List<PlantQueryVo> searchAllPlantByWord(String plantname) {
@@ -102,10 +107,48 @@ public class PlantServiceImpl implements PlantService {
 
 
 	@Override
-	public Plant getPlantById(int parseInt) {
+	public PlantQueryVo getPlantById(int parseInt,String userid) {
 		// TODO Auto-generated method stub
+		PlantQueryVo vo=new PlantQueryVo();
+			vo.setPlant(plantMapper.selectByPrimaryKey(parseInt));
+			CollectionExample cex=new CollectionExample();
+			com.garden.po.CollectionExample.Criteria criteria=cex.createCriteria();
+			criteria.andCollPlantidEqualTo(parseInt);
+			criteria.andCollUseridEqualTo(userid);
+			List<Collection> selectByExample = collmapper.selectByExample(cex);
+			if (selectByExample.size()!=0) {
+				vo.setCollect("true");
+			}else{
+				vo.setCollect("false");
+			}
+		return vo;
+	}
+
+	@Override
+	public String collectPlant(String userid, String plantid) {
+		// TODO Auto-generated method stub
+		try {
+			Collection collection=new Collection();
+			
+			CollectionExample cex=new CollectionExample();
+			com.garden.po.CollectionExample.Criteria criteria=cex.createCriteria();
+			criteria.andCollPlantidEqualTo(Integer.parseInt(plantid));
+			criteria.andCollUseridEqualTo(userid);
+			List<Collection> list=collmapper.selectByExample(cex);
+			collection.setCollPlantid(Integer.parseInt(plantid));
+			collection.setCollUserid(userid);
+			if (list.size()==0) {
+				collmapper.insert(collection);
+				return "ok";
+			}
+			collmapper.deleteByExample(cex);
+			return "ok";
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return "fail";
 		
-		return plantMapper.selectByPrimaryKey(parseInt);
+		}
 	}
 		
 		

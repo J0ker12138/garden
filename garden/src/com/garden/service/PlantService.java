@@ -14,5 +14,7 @@ public interface PlantService {
 
 		public List<PlantQueryVo> getPlantListByType(String type);
 
-		public Plant getPlantById(int parseInt);
+		public PlantQueryVo getPlantById(int parseInt, String userid);
+
+		public String collectPlant(String userid, String plantid);
 }
