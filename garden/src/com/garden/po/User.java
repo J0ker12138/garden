@@ -7,8 +7,6 @@ public class User {
 
     private String userImage;
 
-    private String username;
-
     public String getUserId() {
         return userId;
     }
@@ -31,13 +29,5 @@ public class User {
 
     public void setUserImage(String userImage) {
         this.userImage = userImage == null ? null : userImage.trim();
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username == null ? null : username.trim();
     }
 }

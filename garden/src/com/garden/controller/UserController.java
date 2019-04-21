@@ -5,13 +5,17 @@ package com.garden.controller;
 
 
 
+import java.util.List;
+
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.garden.po.TechniqueQueryVo;
 import com.garden.po.User;
 import com.garden.service.UserService;
 import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
@@ -24,6 +28,14 @@ public class UserController {
 		String secret="279f2dfe5182330c8146be980a5942b3";
 		
 		String url="https://api.weixin.qq.com/sns/jscode2session";
+	
+	
+		@RequestMapping("addUserUrl")
+		public @ResponseBody String addUserUrl(@RequestBody User user,String id){
+			System.out.println(id);
+			return userservice.addUserImage(user.getUserId(),user.getUserImage(),user.getUserName());
+			
+		}
 		@RequestMapping("login")
 		public @ResponseBody String getUserMsg(String code) throws org.json.simple.parser.ParseException{
 			String params = "appid=" + appid + "&secret=" + secret + "&js_code=" + code +
@@ -60,10 +72,5 @@ public class UserController {
 
 			
 		}
-		@RequestMapping("addUserImageUrl")
-		public String addUserImageUrl(String userid,String userImage,String userName){
-			
-			return userservice.addUserImage(userid,userImage,userName);
-			
-		}
+	
 }

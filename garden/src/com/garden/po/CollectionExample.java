@@ -233,6 +233,66 @@ public class CollectionExample {
             addCriterion("coll_dynamicid not between", value1, value2, "collDynamicid");
             return (Criteria) this;
         }
+
+        public Criteria andCollPlantidIsNull() {
+            addCriterion("coll_plantid is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCollPlantidIsNotNull() {
+            addCriterion("coll_plantid is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCollPlantidEqualTo(Integer value) {
+            addCriterion("coll_plantid =", value, "collPlantid");
+            return (Criteria) this;
+        }
+
+        public Criteria andCollPlantidNotEqualTo(Integer value) {
+            addCriterion("coll_plantid <>", value, "collPlantid");
+            return (Criteria) this;
+        }
+
+        public Criteria andCollPlantidGreaterThan(Integer value) {
+            addCriterion("coll_plantid >", value, "collPlantid");
+            return (Criteria) this;
+        }
+
+        public Criteria andCollPlantidGreaterThanOrEqualTo(Integer value) {
+            addCriterion("coll_plantid >=", value, "collPlantid");
+            return (Criteria) this;
+        }
+
+        public Criteria andCollPlantidLessThan(Integer value) {
+            addCriterion("coll_plantid <", value, "collPlantid");
+            return (Criteria) this;
+        }
+
+        public Criteria andCollPlantidLessThanOrEqualTo(Integer value) {
+            addCriterion("coll_plantid <=", value, "collPlantid");
+            return (Criteria) this;
+        }
+
+        public Criteria andCollPlantidIn(List<Integer> values) {
+            addCriterion("coll_plantid in", values, "collPlantid");
+            return (Criteria) this;
+        }
+
+        public Criteria andCollPlantidNotIn(List<Integer> values) {
+            addCriterion("coll_plantid not in", values, "collPlantid");
+            return (Criteria) this;
+        }
+
+        public Criteria andCollPlantidBetween(Integer value1, Integer value2) {
+            addCriterion("coll_plantid between", value1, value2, "collPlantid");
+            return (Criteria) this;
+        }
+
+        public Criteria andCollPlantidNotBetween(Integer value1, Integer value2) {
+            addCriterion("coll_plantid not between", value1, value2, "collPlantid");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

@@ -54,9 +54,20 @@ public class TechniqueServiceImpl implements TechniqueService {
 			techvo.setTechlist(techvolist);
 			return techvo;
 			
+		}else{
+			TechniqueQueryVo techvo=new TechniqueQueryVo();
+			List<Technique> selectByExample  = techniquemapper.selectByExample(null);
+			techvo.setPlantlist(psi.searchAllPlantByWord(tech.getSearchword()));
+			List<TechniqueQueryVo> techvolist=new ArrayList<>();
+			for (int i = 0; i < selectByExample.size(); i++) {
+				TechniqueQueryVo techvoi=new TechniqueQueryVo();
+				techvoi.setTech(selectByExample.get(i));
+				techvo.setUser(usermapper.selectByPrimaryKey(selectByExample.get(i).getTechUserid()));
+				techvolist.add(techvoi);
+			}
+			techvo.setTechlist(techvolist);
+			return techvo;
 		}
-		return null;
-			
 	}
 
 

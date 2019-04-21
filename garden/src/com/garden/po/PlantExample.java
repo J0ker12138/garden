@@ -374,76 +374,6 @@ public class PlantExample {
             return (Criteria) this;
         }
 
-        public Criteria andPlantFloweringIsNull() {
-            addCriterion("plant_flowering is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andPlantFloweringIsNotNull() {
-            addCriterion("plant_flowering is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andPlantFloweringEqualTo(String value) {
-            addCriterion("plant_flowering =", value, "plantFlowering");
-            return (Criteria) this;
-        }
-
-        public Criteria andPlantFloweringNotEqualTo(String value) {
-            addCriterion("plant_flowering <>", value, "plantFlowering");
-            return (Criteria) this;
-        }
-
-        public Criteria andPlantFloweringGreaterThan(String value) {
-            addCriterion("plant_flowering >", value, "plantFlowering");
-            return (Criteria) this;
-        }
-
-        public Criteria andPlantFloweringGreaterThanOrEqualTo(String value) {
-            addCriterion("plant_flowering >=", value, "plantFlowering");
-            return (Criteria) this;
-        }
-
-        public Criteria andPlantFloweringLessThan(String value) {
-            addCriterion("plant_flowering <", value, "plantFlowering");
-            return (Criteria) this;
-        }
-
-        public Criteria andPlantFloweringLessThanOrEqualTo(String value) {
-            addCriterion("plant_flowering <=", value, "plantFlowering");
-            return (Criteria) this;
-        }
-
-        public Criteria andPlantFloweringLike(String value) {
-            addCriterion("plant_flowering like", value, "plantFlowering");
-            return (Criteria) this;
-        }
-
-        public Criteria andPlantFloweringNotLike(String value) {
-            addCriterion("plant_flowering not like", value, "plantFlowering");
-            return (Criteria) this;
-        }
-
-        public Criteria andPlantFloweringIn(List<String> values) {
-            addCriterion("plant_flowering in", values, "plantFlowering");
-            return (Criteria) this;
-        }
-
-        public Criteria andPlantFloweringNotIn(List<String> values) {
-            addCriterion("plant_flowering not in", values, "plantFlowering");
-            return (Criteria) this;
-        }
-
-        public Criteria andPlantFloweringBetween(String value1, String value2) {
-            addCriterion("plant_flowering between", value1, value2, "plantFlowering");
-            return (Criteria) this;
-        }
-
-        public Criteria andPlantFloweringNotBetween(String value1, String value2) {
-            addCriterion("plant_flowering not between", value1, value2, "plantFlowering");
-            return (Criteria) this;
-        }
-
         public Criteria andPlantOthernameIsNull() {
             addCriterion("plant_othername is null");
             return (Criteria) this;
@@ -651,6 +581,426 @@ public class PlantExample {
 
         public Criteria andPlantDescriptionNotBetween(String value1, String value2) {
             addCriterion("plant_description not between", value1, value2, "plantDescription");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantJieIsNull() {
+            addCriterion("plant_jie is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantJieIsNotNull() {
+            addCriterion("plant_jie is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantJieEqualTo(String value) {
+            addCriterion("plant_jie =", value, "plantJie");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantJieNotEqualTo(String value) {
+            addCriterion("plant_jie <>", value, "plantJie");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantJieGreaterThan(String value) {
+            addCriterion("plant_jie >", value, "plantJie");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantJieGreaterThanOrEqualTo(String value) {
+            addCriterion("plant_jie >=", value, "plantJie");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantJieLessThan(String value) {
+            addCriterion("plant_jie <", value, "plantJie");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantJieLessThanOrEqualTo(String value) {
+            addCriterion("plant_jie <=", value, "plantJie");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantJieLike(String value) {
+            addCriterion("plant_jie like", value, "plantJie");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantJieNotLike(String value) {
+            addCriterion("plant_jie not like", value, "plantJie");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantJieIn(List<String> values) {
+            addCriterion("plant_jie in", values, "plantJie");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantJieNotIn(List<String> values) {
+            addCriterion("plant_jie not in", values, "plantJie");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantJieBetween(String value1, String value2) {
+            addCriterion("plant_jie between", value1, value2, "plantJie");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantJieNotBetween(String value1, String value2) {
+            addCriterion("plant_jie not between", value1, value2, "plantJie");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantMuIsNull() {
+            addCriterion("plant_mu is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantMuIsNotNull() {
+            addCriterion("plant_mu is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantMuEqualTo(String value) {
+            addCriterion("plant_mu =", value, "plantMu");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantMuNotEqualTo(String value) {
+            addCriterion("plant_mu <>", value, "plantMu");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantMuGreaterThan(String value) {
+            addCriterion("plant_mu >", value, "plantMu");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantMuGreaterThanOrEqualTo(String value) {
+            addCriterion("plant_mu >=", value, "plantMu");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantMuLessThan(String value) {
+            addCriterion("plant_mu <", value, "plantMu");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantMuLessThanOrEqualTo(String value) {
+            addCriterion("plant_mu <=", value, "plantMu");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantMuLike(String value) {
+            addCriterion("plant_mu like", value, "plantMu");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantMuNotLike(String value) {
+            addCriterion("plant_mu not like", value, "plantMu");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantMuIn(List<String> values) {
+            addCriterion("plant_mu in", values, "plantMu");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantMuNotIn(List<String> values) {
+            addCriterion("plant_mu not in", values, "plantMu");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantMuBetween(String value1, String value2) {
+            addCriterion("plant_mu between", value1, value2, "plantMu");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantMuNotBetween(String value1, String value2) {
+            addCriterion("plant_mu not between", value1, value2, "plantMu");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantKeIsNull() {
+            addCriterion("plant_ke is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantKeIsNotNull() {
+            addCriterion("plant_ke is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantKeEqualTo(String value) {
+            addCriterion("plant_ke =", value, "plantKe");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantKeNotEqualTo(String value) {
+            addCriterion("plant_ke <>", value, "plantKe");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantKeGreaterThan(String value) {
+            addCriterion("plant_ke >", value, "plantKe");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantKeGreaterThanOrEqualTo(String value) {
+            addCriterion("plant_ke >=", value, "plantKe");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantKeLessThan(String value) {
+            addCriterion("plant_ke <", value, "plantKe");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantKeLessThanOrEqualTo(String value) {
+            addCriterion("plant_ke <=", value, "plantKe");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantKeLike(String value) {
+            addCriterion("plant_ke like", value, "plantKe");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantKeNotLike(String value) {
+            addCriterion("plant_ke not like", value, "plantKe");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantKeIn(List<String> values) {
+            addCriterion("plant_ke in", values, "plantKe");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantKeNotIn(List<String> values) {
+            addCriterion("plant_ke not in", values, "plantKe");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantKeBetween(String value1, String value2) {
+            addCriterion("plant_ke between", value1, value2, "plantKe");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantKeNotBetween(String value1, String value2) {
+            addCriterion("plant_ke not between", value1, value2, "plantKe");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantShuIsNull() {
+            addCriterion("plant_shu is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantShuIsNotNull() {
+            addCriterion("plant_shu is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantShuEqualTo(String value) {
+            addCriterion("plant_shu =", value, "plantShu");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantShuNotEqualTo(String value) {
+            addCriterion("plant_shu <>", value, "plantShu");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantShuGreaterThan(String value) {
+            addCriterion("plant_shu >", value, "plantShu");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantShuGreaterThanOrEqualTo(String value) {
+            addCriterion("plant_shu >=", value, "plantShu");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantShuLessThan(String value) {
+            addCriterion("plant_shu <", value, "plantShu");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantShuLessThanOrEqualTo(String value) {
+            addCriterion("plant_shu <=", value, "plantShu");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantShuLike(String value) {
+            addCriterion("plant_shu like", value, "plantShu");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantShuNotLike(String value) {
+            addCriterion("plant_shu not like", value, "plantShu");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantShuIn(List<String> values) {
+            addCriterion("plant_shu in", values, "plantShu");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantShuNotIn(List<String> values) {
+            addCriterion("plant_shu not in", values, "plantShu");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantShuBetween(String value1, String value2) {
+            addCriterion("plant_shu between", value1, value2, "plantShu");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantShuNotBetween(String value1, String value2) {
+            addCriterion("plant_shu not between", value1, value2, "plantShu");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantZhongIsNull() {
+            addCriterion("plant_zhong is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantZhongIsNotNull() {
+            addCriterion("plant_zhong is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantZhongEqualTo(String value) {
+            addCriterion("plant_zhong =", value, "plantZhong");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantZhongNotEqualTo(String value) {
+            addCriterion("plant_zhong <>", value, "plantZhong");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantZhongGreaterThan(String value) {
+            addCriterion("plant_zhong >", value, "plantZhong");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantZhongGreaterThanOrEqualTo(String value) {
+            addCriterion("plant_zhong >=", value, "plantZhong");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantZhongLessThan(String value) {
+            addCriterion("plant_zhong <", value, "plantZhong");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantZhongLessThanOrEqualTo(String value) {
+            addCriterion("plant_zhong <=", value, "plantZhong");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantZhongLike(String value) {
+            addCriterion("plant_zhong like", value, "plantZhong");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantZhongNotLike(String value) {
+            addCriterion("plant_zhong not like", value, "plantZhong");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantZhongIn(List<String> values) {
+            addCriterion("plant_zhong in", values, "plantZhong");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantZhongNotIn(List<String> values) {
+            addCriterion("plant_zhong not in", values, "plantZhong");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantZhongBetween(String value1, String value2) {
+            addCriterion("plant_zhong between", value1, value2, "plantZhong");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantZhongNotBetween(String value1, String value2) {
+            addCriterion("plant_zhong not between", value1, value2, "plantZhong");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantTypeIsNull() {
+            addCriterion("plant_type is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantTypeIsNotNull() {
+            addCriterion("plant_type is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantTypeEqualTo(String value) {
+            addCriterion("plant_type =", value, "plantType");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantTypeNotEqualTo(String value) {
+            addCriterion("plant_type <>", value, "plantType");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantTypeGreaterThan(String value) {
+            addCriterion("plant_type >", value, "plantType");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantTypeGreaterThanOrEqualTo(String value) {
+            addCriterion("plant_type >=", value, "plantType");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantTypeLessThan(String value) {
+            addCriterion("plant_type <", value, "plantType");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantTypeLessThanOrEqualTo(String value) {
+            addCriterion("plant_type <=", value, "plantType");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantTypeLike(String value) {
+            addCriterion("plant_type like", value, "plantType");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantTypeNotLike(String value) {
+            addCriterion("plant_type not like", value, "plantType");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantTypeIn(List<String> values) {
+            addCriterion("plant_type in", values, "plantType");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantTypeNotIn(List<String> values) {
+            addCriterion("plant_type not in", values, "plantType");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantTypeBetween(String value1, String value2) {
+            addCriterion("plant_type between", value1, value2, "plantType");
+            return (Criteria) this;
+        }
+
+        public Criteria andPlantTypeNotBetween(String value1, String value2) {
+            addCriterion("plant_type not between", value1, value2, "plantType");
             return (Criteria) this;
         }
     }

@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService{
 		// TODO Auto-generated method stub
 		try {
 			User user=new User();
-			user.setUsername(userName);
+			user.setUserName(userName);
 			user.setUserId(userid);
 			user.setUserImage(userImage);
 			UserExample uex=new UserExample();
@@ -45,7 +45,12 @@ public class UserServiceImpl implements UserService{
 		// TODO Auto-generated method stub
 		User u=new User();
 		u.setUserId(openid);
+		u=usermapper.selectByPrimaryKey(openid);
+		if (u.getUserId()!=null) {
+			
+		}else{
 		usermapper.insert(u);
+		}
 	}
 
 }
