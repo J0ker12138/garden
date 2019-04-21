@@ -993,6 +993,76 @@ public class DiaryExample {
             addCriterion("diary_pointnum not between", value1, value2, "diaryPointnum");
             return (Criteria) this;
         }
+
+        public Criteria andDiaryFloweringIsNull() {
+            addCriterion("diary_flowering is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDiaryFloweringIsNotNull() {
+            addCriterion("diary_flowering is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDiaryFloweringEqualTo(String value) {
+            addCriterion("diary_flowering =", value, "diaryFlowering");
+            return (Criteria) this;
+        }
+
+        public Criteria andDiaryFloweringNotEqualTo(String value) {
+            addCriterion("diary_flowering <>", value, "diaryFlowering");
+            return (Criteria) this;
+        }
+
+        public Criteria andDiaryFloweringGreaterThan(String value) {
+            addCriterion("diary_flowering >", value, "diaryFlowering");
+            return (Criteria) this;
+        }
+
+        public Criteria andDiaryFloweringGreaterThanOrEqualTo(String value) {
+            addCriterion("diary_flowering >=", value, "diaryFlowering");
+            return (Criteria) this;
+        }
+
+        public Criteria andDiaryFloweringLessThan(String value) {
+            addCriterion("diary_flowering <", value, "diaryFlowering");
+            return (Criteria) this;
+        }
+
+        public Criteria andDiaryFloweringLessThanOrEqualTo(String value) {
+            addCriterion("diary_flowering <=", value, "diaryFlowering");
+            return (Criteria) this;
+        }
+
+        public Criteria andDiaryFloweringLike(String value) {
+            addCriterion("diary_flowering like", value, "diaryFlowering");
+            return (Criteria) this;
+        }
+
+        public Criteria andDiaryFloweringNotLike(String value) {
+            addCriterion("diary_flowering not like", value, "diaryFlowering");
+            return (Criteria) this;
+        }
+
+        public Criteria andDiaryFloweringIn(List<String> values) {
+            addCriterion("diary_flowering in", values, "diaryFlowering");
+            return (Criteria) this;
+        }
+
+        public Criteria andDiaryFloweringNotIn(List<String> values) {
+            addCriterion("diary_flowering not in", values, "diaryFlowering");
+            return (Criteria) this;
+        }
+
+        public Criteria andDiaryFloweringBetween(String value1, String value2) {
+            addCriterion("diary_flowering between", value1, value2, "diaryFlowering");
+            return (Criteria) this;
+        }
+
+        public Criteria andDiaryFloweringNotBetween(String value1, String value2) {
+            addCriterion("diary_flowering not between", value1, value2, "diaryFlowering");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

@@ -27,6 +27,8 @@ public class Diary {
 
     private Integer diaryPointnum;
 
+    private String diaryFlowering;
+
     public Integer getDiaryId() {
         return diaryId;
     }
@@ -129,5 +131,13 @@ public class Diary {
 
     public void setDiaryPointnum(Integer diaryPointnum) {
         this.diaryPointnum = diaryPointnum;
+    }
+
+    public String getDiaryFlowering() {
+        return diaryFlowering;
+    }
+
+    public void setDiaryFlowering(String diaryFlowering) {
+        this.diaryFlowering = diaryFlowering == null ? null : diaryFlowering.trim();
     }
 }
