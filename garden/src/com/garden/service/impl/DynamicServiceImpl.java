@@ -61,7 +61,7 @@ public class DynamicServiceImpl implements DynamicService {
 	 * 根据动态id查询详细动态
 	 */
 	@Override
-	public DynamicAll findDynamicByDynamicId(Integer DynamicId) {
+	public DynamicQueryVo findDynamicByDynamicId(Integer DynamicId) {
 		return newDynamicMapper.findDynamicByDynamicId(DynamicId);
 	}
 	

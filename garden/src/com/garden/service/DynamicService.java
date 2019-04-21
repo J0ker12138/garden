@@ -44,7 +44,7 @@ public interface DynamicService {
 	 * @param DynamicId
 	 * @return
 	 */
-	public DynamicAll findDynamicByDynamicId(Integer DynamicId);
+	public DynamicQueryVo findDynamicByDynamicId(Integer DynamicId);
 	
 	/**
 	 * 根据动态id查询回复

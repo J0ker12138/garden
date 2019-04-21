@@ -12,6 +12,16 @@ public class DynamicQueryVo extends DynamicAll{
     private String user_name;
 
     private String user_image;
+    
+    private Integer comment_num;
+
+	public Integer getComment_num() {
+		return comment_num;
+	}
+
+	public void setComment_num(Integer comment_num) {
+		this.comment_num = comment_num;
+	}
 
 	public String getUser_name() {
 		return user_name;

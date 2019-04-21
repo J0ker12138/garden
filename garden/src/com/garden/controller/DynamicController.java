@@ -22,7 +22,7 @@ public class DynamicController {
 	 * 查询全部动态
 	 * @return
 	 */
-	@RequestMapping("selectDynamic")
+	@RequestMapping("/selectDynamic")
 	public @ResponseBody List<DynamicQueryVo> selectDynamicList(){
 		return dynamicService.selectDynamicList();
 	}
@@ -76,7 +76,7 @@ public class DynamicController {
 	 * @return
 	 */
 	@RequestMapping("/findDynamicByDynamicId")
-	public @ResponseBody DynamicAll findDynamicByDynamicId(@RequestBody DynamicAll dynamicAll) {
+	public @ResponseBody DynamicQueryVo findDynamicByDynamicId(@RequestBody DynamicAll dynamicAll) {
 		//根据动态id增加浏览量
 		dynamicService.plusWatchNum(dynamicAll.getDynamic_id());
 		return dynamicService.findDynamicByDynamicId(dynamicAll.getDynamic_id());
