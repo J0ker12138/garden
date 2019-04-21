@@ -5,15 +5,15 @@
 	<!-- 查询全部动态 -->
 	<select id="selectDynamicList" resultType="com.garden.po.DynamicQueryVo" >
 		SELECT 
-		d.`dynamic_date`,
-		d.`dynamic_description`,
-		d.`dynamic_id`,
-		d.`dynamic_image`,
-		d.`dynamic_pointnum`,
-		d.`dynamic_viewnum`,
-		d.`dynamic_userid`,
-		u.`user_image`,
-		u.`user_name`
+			d.`dynamic_date`,
+			d.`dynamic_description`,
+			d.`dynamic_id`,
+			d.`dynamic_image`,
+			d.`dynamic_pointnum`,
+			d.`dynamic_viewnum`,
+			d.`dynamic_userid`,
+			u.`user_image`,
+			u.`user_name`
 		FROM
 			`dynamic` d
 		LEFT JOIN `user` u ON u.`user_id` = d.`dynamic_userid`;
@@ -56,15 +56,18 @@
 		WHERE d.`dynamic_userid` = #{UserId};
 	</select>
 	<!-- 根据动态id查询详细动态 -->
-	<select id="findDynamicByDynamicId" parameterType="integer" resultType="com.garden.po.DynamicAll">
+	<select id="findDynamicByDynamicId" parameterType="integer" resultType="com.garden.po.DynamicQueryVo">
 		SELECT 
-		d.`dynamic_date`,
-		d.`dynamic_description`,
-		d.`dynamic_id`,
-		d.`dynamic_image`
+			d.`dynamic_date`,
+			d.`dynamic_description`,
+			d.`dynamic_id`,
+			d.`dynamic_image`,
+			d.`dynamic_pointnum`,
+			u.`user_image`,
+			u.`user_name`
 		FROM
 			`dynamic` d
-		WHERE d.`dynamic_id` = #{DynamicId};
+		LEFT JOIN `user` u ON u.`user_id` = d.`dynamic_userid` WHERE d.`dynamic_id` = #{DynamicId};
 	</select>
 	
 	<!-- 根据动态id查询评论 -->
@@ -78,7 +81,7 @@
 		u.`user_name`
 		FROM
 			`comment` c
-		LEFT JOIN `user` u ON u.`user_id` = c.`comment_userid` WHERE c.`comment_userid` = #{id};
+		LEFT JOIN `user` u ON u.`user_id` = c.`comment_userid` WHERE c.`comment_dynamicid` = #{DynamicId};
 	</select>
 	
 	<!-- 添加评论 -->

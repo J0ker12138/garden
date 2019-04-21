@@ -38,7 +38,7 @@ public class DynamicServiceImpl implements DynamicService {
 		return newDynamicMapper.findDynamicByUserId(UserId);
 	}
 	@Override
-	public DynamicAll findDynamicByDynamicId(Integer DynamicId) {
+	public DynamicQueryVo findDynamicByDynamicId(Integer DynamicId) {
 		return newDynamicMapper.findDynamicByDynamicId(DynamicId);
 	}
 }

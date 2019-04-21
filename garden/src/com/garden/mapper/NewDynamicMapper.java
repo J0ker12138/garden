@@ -33,7 +33,7 @@ public interface NewDynamicMapper {
 	 * @param DynamicId
 	 * @return
 	 */
-	public DynamicAll findDynamicByDynamicId(Integer DynamicId);
+	public DynamicQueryVo findDynamicByDynamicId(Integer DynamicId);
 	
 	public List<Comment> findCommitByDynamicId(Integer DynamicId);
 }

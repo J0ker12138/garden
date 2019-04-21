@@ -62,6 +62,11 @@ public class DynamicController {
 	 * @return
 	 */
 	@RequestMapping("/findDynamicByDynamicId")
+
+	public @ResponseBody DynamicQueryVo findDynamicByDynamicId(@RequestBody DynamicAll dynamicAll) {
+		//根据动态id增加浏览量
+		dynamicService.plusWatchNum(dynamicAll.getDynamic_id());
+
 	public @ResponseBody DynamicAll findDynamicByDynamicId(@RequestBody DynamicAll dynamicAll) {
 		return dynamicService.findDynamicByDynamicId(dynamicAll.getDynamic_id());
 	}
