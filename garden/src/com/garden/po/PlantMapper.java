@@ -1,4 +1,4 @@
-package com.garden.mapper;
+package com.garden.po;
 
 import com.garden.po.Plant;
 import com.garden.po.PlantExample;

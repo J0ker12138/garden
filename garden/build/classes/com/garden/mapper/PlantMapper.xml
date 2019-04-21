@@ -6,10 +6,18 @@
     <result column="plant_name" property="plantName" jdbcType="VARCHAR" />
     <result column="plant_method" property="plantMethod" jdbcType="VARCHAR" />
     <result column="plant_times" property="plantTimes" jdbcType="VARCHAR" />
-    <result column="plant_flowering" property="plantFlowering" jdbcType="VARCHAR" />
     <result column="plant_othername" property="plantOthername" jdbcType="VARCHAR" />
     <result column="plant_image" property="plantImage" jdbcType="VARCHAR" />
     <result column="plant_description" property="plantDescription" jdbcType="VARCHAR" />
+    <result column="plant_jie" property="plantJie" jdbcType="VARCHAR" />
+    <result column="plant_mu" property="plantMu" jdbcType="VARCHAR" />
+    <result column="plant_ke" property="plantKe" jdbcType="VARCHAR" />
+    <result column="plant_shu" property="plantShu" jdbcType="VARCHAR" />
+    <result column="plant_zhong" property="plantZhong" jdbcType="VARCHAR" />
+    <result column="plant_type" property="plantType" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.garden.po.Plant" extends="BaseResultMap" >
+    <result column="plant_flowering" property="plantFlowering" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -70,9 +78,28 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    plant_id, plant_name, plant_method, plant_times, plant_flowering, plant_othername, 
-    plant_image, plant_description
+    plant_id, plant_name, plant_method, plant_times, plant_othername, plant_image, plant_description, 
+    plant_jie, plant_mu, plant_ke, plant_shu, plant_zhong, plant_type
   </sql>
+  <sql id="Blob_Column_List" >
+    plant_flowering
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.garden.po.PlantExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from plant
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.garden.po.PlantExample" >
     select
     <if test="distinct" >
@@ -87,9 +114,11 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
     from plant
     where plant_id = #{plantId,jdbcType=INTEGER}
   </select>
@@ -105,11 +134,15 @@
   </delete>
   <insert id="insert" parameterType="com.garden.po.Plant" >
     insert into plant (plant_id, plant_name, plant_method, 
-      plant_times, plant_flowering, plant_othername, 
-      plant_image, plant_description)
+      plant_times, plant_othername, plant_image, 
+      plant_description, plant_jie, plant_mu, 
+      plant_ke, plant_shu, plant_zhong, 
+      plant_type, plant_flowering)
     values (#{plantId,jdbcType=INTEGER}, #{plantName,jdbcType=VARCHAR}, #{plantMethod,jdbcType=VARCHAR}, 
-      #{plantTimes,jdbcType=VARCHAR}, #{plantFlowering,jdbcType=VARCHAR}, #{plantOthername,jdbcType=VARCHAR}, 
-      #{plantImage,jdbcType=VARCHAR}, #{plantDescription,jdbcType=VARCHAR})
+      #{plantTimes,jdbcType=VARCHAR}, #{plantOthername,jdbcType=VARCHAR}, #{plantImage,jdbcType=VARCHAR}, 
+      #{plantDescription,jdbcType=VARCHAR}, #{plantJie,jdbcType=VARCHAR}, #{plantMu,jdbcType=VARCHAR}, 
+      #{plantKe,jdbcType=VARCHAR}, #{plantShu,jdbcType=VARCHAR}, #{plantZhong,jdbcType=VARCHAR}, 
+      #{plantType,jdbcType=VARCHAR}, #{plantFlowering,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.garden.po.Plant" >
     insert into plant
@@ -126,9 +159,6 @@
       <if test="plantTimes != null" >
         plant_times,
       </if>
-      <if test="plantFlowering != null" >
-        plant_flowering,
-      </if>
       <if test="plantOthername != null" >
         plant_othername,
       </if>
@@ -137,6 +167,27 @@
       </if>
       <if test="plantDescription != null" >
         plant_description,
+      </if>
+      <if test="plantJie != null" >
+        plant_jie,
+      </if>
+      <if test="plantMu != null" >
+        plant_mu,
+      </if>
+      <if test="plantKe != null" >
+        plant_ke,
+      </if>
+      <if test="plantShu != null" >
+        plant_shu,
+      </if>
+      <if test="plantZhong != null" >
+        plant_zhong,
+      </if>
+      <if test="plantType != null" >
+        plant_type,
+      </if>
+      <if test="plantFlowering != null" >
+        plant_flowering,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -152,9 +203,6 @@
       <if test="plantTimes != null" >
         #{plantTimes,jdbcType=VARCHAR},
       </if>
-      <if test="plantFlowering != null" >
-        #{plantFlowering,jdbcType=VARCHAR},
-      </if>
       <if test="plantOthername != null" >
         #{plantOthername,jdbcType=VARCHAR},
       </if>
@@ -163,6 +211,27 @@
       </if>
       <if test="plantDescription != null" >
         #{plantDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="plantJie != null" >
+        #{plantJie,jdbcType=VARCHAR},
+      </if>
+      <if test="plantMu != null" >
+        #{plantMu,jdbcType=VARCHAR},
+      </if>
+      <if test="plantKe != null" >
+        #{plantKe,jdbcType=VARCHAR},
+      </if>
+      <if test="plantShu != null" >
+        #{plantShu,jdbcType=VARCHAR},
+      </if>
+      <if test="plantZhong != null" >
+        #{plantZhong,jdbcType=VARCHAR},
+      </if>
+      <if test="plantType != null" >
+        #{plantType,jdbcType=VARCHAR},
+      </if>
+      <if test="plantFlowering != null" >
+        #{plantFlowering,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
@@ -187,9 +256,6 @@
       <if test="record.plantTimes != null" >
         plant_times = #{record.plantTimes,jdbcType=VARCHAR},
       </if>
-      <if test="record.plantFlowering != null" >
-        plant_flowering = #{record.plantFlowering,jdbcType=VARCHAR},
-      </if>
       <if test="record.plantOthername != null" >
         plant_othername = #{record.plantOthername,jdbcType=VARCHAR},
       </if>
@@ -199,7 +265,48 @@
       <if test="record.plantDescription != null" >
         plant_description = #{record.plantDescription,jdbcType=VARCHAR},
       </if>
+      <if test="record.plantJie != null" >
+        plant_jie = #{record.plantJie,jdbcType=VARCHAR},
+      </if>
+      <if test="record.plantMu != null" >
+        plant_mu = #{record.plantMu,jdbcType=VARCHAR},
+      </if>
+      <if test="record.plantKe != null" >
+        plant_ke = #{record.plantKe,jdbcType=VARCHAR},
+      </if>
+      <if test="record.plantShu != null" >
+        plant_shu = #{record.plantShu,jdbcType=VARCHAR},
+      </if>
+      <if test="record.plantZhong != null" >
+        plant_zhong = #{record.plantZhong,jdbcType=VARCHAR},
+      </if>
+      <if test="record.plantType != null" >
+        plant_type = #{record.plantType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.plantFlowering != null" >
+        plant_flowering = #{record.plantFlowering,jdbcType=LONGVARCHAR},
+      </if>
     </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update plant
+    set plant_id = #{record.plantId,jdbcType=INTEGER},
+      plant_name = #{record.plantName,jdbcType=VARCHAR},
+      plant_method = #{record.plantMethod,jdbcType=VARCHAR},
+      plant_times = #{record.plantTimes,jdbcType=VARCHAR},
+      plant_othername = #{record.plantOthername,jdbcType=VARCHAR},
+      plant_image = #{record.plantImage,jdbcType=VARCHAR},
+      plant_description = #{record.plantDescription,jdbcType=VARCHAR},
+      plant_jie = #{record.plantJie,jdbcType=VARCHAR},
+      plant_mu = #{record.plantMu,jdbcType=VARCHAR},
+      plant_ke = #{record.plantKe,jdbcType=VARCHAR},
+      plant_shu = #{record.plantShu,jdbcType=VARCHAR},
+      plant_zhong = #{record.plantZhong,jdbcType=VARCHAR},
+      plant_type = #{record.plantType,jdbcType=VARCHAR},
+      plant_flowering = #{record.plantFlowering,jdbcType=LONGVARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -210,10 +317,15 @@
       plant_name = #{record.plantName,jdbcType=VARCHAR},
       plant_method = #{record.plantMethod,jdbcType=VARCHAR},
       plant_times = #{record.plantTimes,jdbcType=VARCHAR},
-      plant_flowering = #{record.plantFlowering,jdbcType=VARCHAR},
       plant_othername = #{record.plantOthername,jdbcType=VARCHAR},
       plant_image = #{record.plantImage,jdbcType=VARCHAR},
-      plant_description = #{record.plantDescription,jdbcType=VARCHAR}
+      plant_description = #{record.plantDescription,jdbcType=VARCHAR},
+      plant_jie = #{record.plantJie,jdbcType=VARCHAR},
+      plant_mu = #{record.plantMu,jdbcType=VARCHAR},
+      plant_ke = #{record.plantKe,jdbcType=VARCHAR},
+      plant_shu = #{record.plantShu,jdbcType=VARCHAR},
+      plant_zhong = #{record.plantZhong,jdbcType=VARCHAR},
+      plant_type = #{record.plantType,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -230,9 +342,6 @@
       <if test="plantTimes != null" >
         plant_times = #{plantTimes,jdbcType=VARCHAR},
       </if>
-      <if test="plantFlowering != null" >
-        plant_flowering = #{plantFlowering,jdbcType=VARCHAR},
-      </if>
       <if test="plantOthername != null" >
         plant_othername = #{plantOthername,jdbcType=VARCHAR},
       </if>
@@ -242,7 +351,45 @@
       <if test="plantDescription != null" >
         plant_description = #{plantDescription,jdbcType=VARCHAR},
       </if>
+      <if test="plantJie != null" >
+        plant_jie = #{plantJie,jdbcType=VARCHAR},
+      </if>
+      <if test="plantMu != null" >
+        plant_mu = #{plantMu,jdbcType=VARCHAR},
+      </if>
+      <if test="plantKe != null" >
+        plant_ke = #{plantKe,jdbcType=VARCHAR},
+      </if>
+      <if test="plantShu != null" >
+        plant_shu = #{plantShu,jdbcType=VARCHAR},
+      </if>
+      <if test="plantZhong != null" >
+        plant_zhong = #{plantZhong,jdbcType=VARCHAR},
+      </if>
+      <if test="plantType != null" >
+        plant_type = #{plantType,jdbcType=VARCHAR},
+      </if>
+      <if test="plantFlowering != null" >
+        plant_flowering = #{plantFlowering,jdbcType=LONGVARCHAR},
+      </if>
     </set>
+    where plant_id = #{plantId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.garden.po.Plant" >
+    update plant
+    set plant_name = #{plantName,jdbcType=VARCHAR},
+      plant_method = #{plantMethod,jdbcType=VARCHAR},
+      plant_times = #{plantTimes,jdbcType=VARCHAR},
+      plant_othername = #{plantOthername,jdbcType=VARCHAR},
+      plant_image = #{plantImage,jdbcType=VARCHAR},
+      plant_description = #{plantDescription,jdbcType=VARCHAR},
+      plant_jie = #{plantJie,jdbcType=VARCHAR},
+      plant_mu = #{plantMu,jdbcType=VARCHAR},
+      plant_ke = #{plantKe,jdbcType=VARCHAR},
+      plant_shu = #{plantShu,jdbcType=VARCHAR},
+      plant_zhong = #{plantZhong,jdbcType=VARCHAR},
+      plant_type = #{plantType,jdbcType=VARCHAR},
+      plant_flowering = #{plantFlowering,jdbcType=LONGVARCHAR}
     where plant_id = #{plantId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.garden.po.Plant" >
@@ -250,10 +397,15 @@
     set plant_name = #{plantName,jdbcType=VARCHAR},
       plant_method = #{plantMethod,jdbcType=VARCHAR},
       plant_times = #{plantTimes,jdbcType=VARCHAR},
-      plant_flowering = #{plantFlowering,jdbcType=VARCHAR},
       plant_othername = #{plantOthername,jdbcType=VARCHAR},
       plant_image = #{plantImage,jdbcType=VARCHAR},
-      plant_description = #{plantDescription,jdbcType=VARCHAR}
+      plant_description = #{plantDescription,jdbcType=VARCHAR},
+      plant_jie = #{plantJie,jdbcType=VARCHAR},
+      plant_mu = #{plantMu,jdbcType=VARCHAR},
+      plant_ke = #{plantKe,jdbcType=VARCHAR},
+      plant_shu = #{plantShu,jdbcType=VARCHAR},
+      plant_zhong = #{plantZhong,jdbcType=VARCHAR},
+      plant_type = #{plantType,jdbcType=VARCHAR}
     where plant_id = #{plantId,jdbcType=INTEGER}
   </update>
 </mapper>

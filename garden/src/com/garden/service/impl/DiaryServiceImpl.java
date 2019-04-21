@@ -8,6 +8,7 @@ import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.aliyun.oss.OSSClient;
 import com.garden.mapper.DiaryMapper;
 import com.garden.mapper.DiarylogMapper;
 import com.garden.po.Diary;
@@ -159,5 +160,15 @@ public class DiaryServiceImpl implements DiaryService {
 		DiaryQueryVo dvo=new DiaryQueryVo();
 		dvo.setDiary(diary);
 		return dvo;
+	}
+
+	@Override
+	public void deleteDiary(String diaryid) {
+		// TODO Auto-generated method stub
+		OSSClientUtil oss=new OSSClientUtil();
+		DiarylogExample ex=new DiarylogExample();
+		ex.createCriteria().andLogDiaryidEqualTo(Integer.parseInt(diaryid));
+		diarylogMapper.deleteByExample(ex);
+		diaryMapper.deleteByPrimaryKey(Integer.parseInt(diaryid));
 	}
 }

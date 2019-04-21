@@ -78,11 +78,12 @@ public class DiaryController {
 		try {
 			if (!file.isEmpty()) {
 				url=ossutil.uploadImg2Oss(file);
+			
 			}
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			diaryService.addDiary(vo);
+			
 			e.printStackTrace();
 		}
 		vo.getDiary().setDiaryImage(url);
@@ -99,12 +100,12 @@ public class DiaryController {
 	 * @throws Exception 
 	 */
 	@RequestMapping(value="/createDiarylog")
-	public String createDiarylogList(String logDescription, String logDiaryid,MultipartFile file) throws Exception{
+	public String createDiarylog(String logDescription, String logDiaryid,MultipartFile file) throws Exception{
 		System.out.println(logDescription);
 		System.out.println(logDiaryid);
 		String url="";
 		if (!file.isEmpty()) {
-		url=	ossutil.uploadImg2Oss(file);
+		url=ossutil.uploadImg2Oss(file);
 		}
 		System.out.println(url);
 		DiarylogQueryVo dvo=new DiarylogQueryVo();
@@ -203,6 +204,13 @@ public class DiaryController {
 		List<DiarylogQueryVo> list=diaryService.getDiaryLogList(dia.getDiary().getDiaryId());
 		
 		return list;
+		
+	}
+	@RequestMapping(value="/deleteDiary")
+	public @ResponseBody String deleteDiary(String diaryid){
+		diaryService.deleteDiary(diaryid);
+		
+		return "ok";
 		
 	}
 }

@@ -42,9 +42,71 @@ public class PlantServiceImpl implements PlantService {
 				return listvo;
 			}
 			return listvo;
+		}else{
+			List<Plant> selectByExample = plantMapper.selectByExample(null);
+			List<PlantQueryVo> listvo=new ArrayList<>();
+			if (selectByExample!=null) {
+				for (int i = 0; i < selectByExample.size(); i++) {
+					PlantQueryVo plantvo=new PlantQueryVo();
+					plantvo.setPlant(selectByExample.get(i));
+					listvo.add(plantvo);
+				}
+				return listvo;
+			}
+			return null;
 		}
-		return null;
+		
 		}
+
+	@Override
+	public List<PlantQueryVo> getAllPlant() {
+		// TODO Auto-generated method stub
+		List<PlantQueryVo> plantList=new ArrayList<>();
+		List<Plant> list=plantMapper.selectByExample(null);
+	
+		for (int i = 0; i < list.size(); i++) {
+			PlantQueryVo vo=new PlantQueryVo();
+			vo.setPlant(list.get(i));
+			plantList.add(vo);
+		}
+		return plantList;
+	}
+
+	@Override
+	public List<PlantQueryVo> getPlantListByType(String word) {
+		// TODO Auto-generated method stub
+		if (word.equals("全部")) {
+			List<PlantQueryVo> plantList=new ArrayList<>();
+			List<Plant> list=plantMapper.selectByExample(null);
+		
+			for (int i = 0; i < list.size(); i++) {
+				PlantQueryVo vo=new PlantQueryVo();
+				vo.setPlant(list.get(i));
+				plantList.add(vo);
+			}
+			return plantList;
+		}else{
+			PlantExample pex=new PlantExample();
+			List<PlantQueryVo> plantList=new ArrayList<>();
+			pex.createCriteria().andPlantTypeEqualTo(word);
+			List<Plant> list=plantMapper.selectByExample(pex);
+			for (int i = 0; i < list.size(); i++) {
+				PlantQueryVo vo=new PlantQueryVo();
+				vo.setPlant(list.get(i));
+				plantList.add(vo);
+			}
+			return plantList;
+		}
+	
+	}
+
+
+	@Override
+	public Plant getPlantById(int parseInt) {
+		// TODO Auto-generated method stub
+		
+		return plantMapper.selectByPrimaryKey(parseInt);
+	}
 		
 		
 

@@ -9,13 +9,25 @@ public class Plant {
 
     private String plantTimes;
 
-    private String plantFlowering;
-
     private String plantOthername;
 
     private String plantImage;
 
     private String plantDescription;
+
+    private String plantJie;
+
+    private String plantMu;
+
+    private String plantKe;
+
+    private String plantShu;
+
+    private String plantZhong;
+
+    private String plantType;
+
+    private String plantFlowering;
 
     public Integer getPlantId() {
         return plantId;
@@ -49,14 +61,6 @@ public class Plant {
         this.plantTimes = plantTimes == null ? null : plantTimes.trim();
     }
 
-    public String getPlantFlowering() {
-        return plantFlowering;
-    }
-
-    public void setPlantFlowering(String plantFlowering) {
-        this.plantFlowering = plantFlowering == null ? null : plantFlowering.trim();
-    }
-
     public String getPlantOthername() {
         return plantOthername;
     }
@@ -79,5 +83,61 @@ public class Plant {
 
     public void setPlantDescription(String plantDescription) {
         this.plantDescription = plantDescription == null ? null : plantDescription.trim();
+    }
+
+    public String getPlantJie() {
+        return plantJie;
+    }
+
+    public void setPlantJie(String plantJie) {
+        this.plantJie = plantJie == null ? null : plantJie.trim();
+    }
+
+    public String getPlantMu() {
+        return plantMu;
+    }
+
+    public void setPlantMu(String plantMu) {
+        this.plantMu = plantMu == null ? null : plantMu.trim();
+    }
+
+    public String getPlantKe() {
+        return plantKe;
+    }
+
+    public void setPlantKe(String plantKe) {
+        this.plantKe = plantKe == null ? null : plantKe.trim();
+    }
+
+    public String getPlantShu() {
+        return plantShu;
+    }
+
+    public void setPlantShu(String plantShu) {
+        this.plantShu = plantShu == null ? null : plantShu.trim();
+    }
+
+    public String getPlantZhong() {
+        return plantZhong;
+    }
+
+    public void setPlantZhong(String plantZhong) {
+        this.plantZhong = plantZhong == null ? null : plantZhong.trim();
+    }
+
+    public String getPlantType() {
+        return plantType;
+    }
+
+    public void setPlantType(String plantType) {
+        this.plantType = plantType == null ? null : plantType.trim();
+    }
+
+    public String getPlantFlowering() {
+        return plantFlowering;
+    }
+
+    public void setPlantFlowering(String plantFlowering) {
+        this.plantFlowering = plantFlowering == null ? null : plantFlowering.trim();
     }
 }
