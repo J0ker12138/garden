@@ -1,4 +1,4 @@
-package com.garden.mapper;
+package com.garden.service;
 
 import java.util.List;
 
@@ -7,8 +7,8 @@ import com.garden.po.CommentQueryVo;
 import com.garden.po.DynamicAll;
 import com.garden.po.DynamicQueryVo;
 
+public interface DynamicService {
 
-public interface NewDynamicMapper {
 	/**
 	 * 查询全部动态
 	 * @return
@@ -17,45 +17,55 @@ public interface NewDynamicMapper {
 	/**
 	 * 添加动态
 	 * @param dynamicAll
+	 * @return
 	 */
-	public void insertDynamic(DynamicAll dynamicAll);
+	public DynamicAll insertDynamic(DynamicAll dynamicAll);
 	/**
 	 * 点赞加
 	 * @param dynamicId
 	 */
 	public void plusPointNum(Integer dynamicId);
+	
 	/**
-	 * 点赞减
+	 * 根据动态id取消点赞
 	 * @param dynamicId
 	 */
 	public void delPointNum(Integer dynamicId);
+	
 	/**
-	 * 根据用户id查询用户动态
-	 * @param userId
+	 * 根据用户id查询动态
+	 * @param string
 	 * @return
 	 */
-	public List<DynamicAll> findDynamicByUserId(String userId);
+	public List<DynamicAll> findDynamicByUserId(String string);
+	
+
 	/**
 	 * 根据动态id查询详细动态
 	 * @param DynamicId
 	 * @return
 	 */
 	public DynamicQueryVo findDynamicByDynamicId(Integer DynamicId);
+	
 	/**
-	 * 根据动态id查询评论
+	 * 根据动态id查询回复
 	 * @param DynamicId
 	 * @return
 	 */
-	public List<CommentQueryVo> findCommitByDynamicId(Integer DynamicId);
+	public List<CommentQueryVo> findCommentByDynamicId(Integer DynamicId);
+	
 	/**
-	 * 增加访问量
+	 * 根据动态id浏览量+1
 	 * @param DynamicId
 	 */
 	public void plusWatchNum(Integer DynamicId);
-	
 	/**
 	 * 添加评论
 	 * @param comment
 	 */
 	public void addComment(Comment comment);
+	
+	
+
+
 }

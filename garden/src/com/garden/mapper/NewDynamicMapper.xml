@@ -3,7 +3,7 @@
 <mapper namespace="com.garden.mapper.NewDynamicMapper" >
 
 	<!-- 查询全部动态 -->
-	<select id="selectDynamicList" resultType="com.garden.po.DynamicQueryVo" >
+	 <select id="selectDynamicList" resultType="com.garden.po.DynamicQueryVo" >
 		SELECT 
 			d.`dynamic_date`,
 			d.`dynamic_description`,
@@ -17,8 +17,8 @@
 		FROM
 			`dynamic` d
 		LEFT JOIN `user` u ON u.`user_id` = d.`dynamic_userid`;
-	</select>
-	
+	</select> 
+ 
 	<!-- 添加动态 -->
 	<insert id="insertDynamic" parameterType="com.garden.po.DynamicAll">
 		 INSERT INTO `dynamic` (
@@ -42,6 +42,15 @@
 		WHERE `dynamic_id` = #{DynamicId};
 	</update>
 
+	<!-- 点赞- -->
+	<update id="delPointNum" parameterType="integer">
+		UPDATE 
+			`dynamic` 
+		SET
+			`dynamic_pointnum` = `dynamic_pointnum` -1
+			WHERE `dynamic_id` = #{DynamicId};
+	</update>
+	
 	<!-- 根据用户id查询用户动态 -->
 	<select id="findDynamicByUserId" parameterType="string" resultType="com.garden.po.DynamicAll">
 		SELECT 
@@ -55,6 +64,7 @@
 			`dynamic` d
 		WHERE d.`dynamic_userid` = #{UserId};
 	</select>
+	
 	<!-- 根据动态id查询详细动态 -->
 	<select id="findDynamicByDynamicId" parameterType="integer" resultType="com.garden.po.DynamicQueryVo">
 		SELECT 
@@ -83,8 +93,9 @@
 			`comment` c
 		LEFT JOIN `user` u ON u.`user_id` = c.`comment_userid` WHERE c.`comment_dynamicid` = #{DynamicId};
 	</select>
-	
+
 	<!-- 添加评论 -->
+	
 	<insert id="addComment" parameterType="com.garden.po.Comment" >
 		INSERT INTO `comment` (
 		  `comment_dynamicid`,
@@ -109,13 +120,5 @@
 				
 	</update>
 	
-	<!-- 点赞- -->
-	<update id="delPointNum" parameterType="integer">
-		UPDATE 
-		  `dynamic` 
-		SET
-		  `dynamic_pointnum` = `dynamic_pointnum` -1
-		WHERE `dynamic_id` = #{DynamicId};
-	</update>
 
 </mapper>
