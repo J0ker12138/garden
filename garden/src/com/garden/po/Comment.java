@@ -15,45 +15,45 @@ public class Comment {
     
     private String comment_userid;
 
-    public Integer getCommentId() {
-        return comment_id;
-    }
+	public Integer getComment_id() {
+		return comment_id;
+	}
 
-    public void setCommentId(Integer commentId) {
-        this.comment_id = commentId;
-    }
+	public void setComment_id(Integer comment_id) {
+		this.comment_id = comment_id;
+	}
 
-    public Integer getCommentDynamicid() {
-        return comment_dynamicid;
-    }
+	public Integer getComment_dynamicid() {
+		return comment_dynamicid;
+	}
 
-    public void setCommentDynamicid(Integer commentDynamicid) {
-        this.comment_dynamicid = commentDynamicid;
-    }
+	public void setComment_dynamicid(Integer comment_dynamicid) {
+		this.comment_dynamicid = comment_dynamicid;
+	}
 
-    public String getCommentDescription() {
-        return comment_description;
-    }
+	public String getComment_description() {
+		return comment_description;
+	}
 
-    public void setCommentDescription(String commentDescription) {
-        this.comment_description = commentDescription == null ? null : commentDescription.trim();
-    }
+	public void setComment_description(String comment_description) {
+		this.comment_description = comment_description;
+	}
 
-    public Date getCommentDate() {
-        return comment_date;
-    }
+	public Date getComment_date() {
+		return comment_date;
+	}
 
-    public void setCommentDate(Date commentDate) {
-        this.comment_date = commentDate;
-    }
+	public void setComment_date(Date comment_date) {
+		this.comment_date = comment_date;
+	}
 
-    public Integer getCommentPointnum() {
-        return comment_pointnum;
-    }
+	public Integer getComment_pointnum() {
+		return comment_pointnum;
+	}
 
-    public void setCommentPointnum(Integer commentPointnum) {
-        this.comment_pointnum = commentPointnum;
-    }
+	public void setComment_pointnum(Integer comment_pointnum) {
+		this.comment_pointnum = comment_pointnum;
+	}
 
 	public String getComment_userid() {
 		return comment_userid;
@@ -62,5 +62,5 @@ public class Comment {
 	public void setComment_userid(String comment_userid) {
 		this.comment_userid = comment_userid;
 	}
-    
+
 }

@@ -67,6 +67,11 @@ public class DynamicController {
 	public @ResponseBody List<DynamicAll> findDynamicByUserId(@RequestBody DynamicAll dynamicAll) {
 		return dynamicService.findDynamicByUserId(dynamicAll.getDynamic_userid());
 	}
+	/**
+	 * 根据动态id查询评论
+	 * @param dynamicAll
+	 * @return
+	 */
 	@RequestMapping("/findCommentByDynamicId")
 	public @ResponseBody List<CommentQueryVo> findCommitByDynamicId(@RequestBody DynamicAll dynamicAll){
 		return dynamicService.findCommentByDynamicId(dynamicAll.getDynamic_id());

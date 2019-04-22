@@ -2,35 +2,37 @@ package com.garden.po;
 
 public class CommentQueryVo extends Comment{
 
-    private String userId;
+    private String user_id;
 
-    private String userName;
+    private String user_name;
 
-    private String userImage;
+    private String user_image;
 
-	public String getUserId() {
-		return userId;
+	public String getUser_id() {
+		return user_id;
 	}
 
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
 	}
 
-	public String getUserName() {
-		return userName;
+	public String getUser_name() {
+		return user_name;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
 	}
 
-	public String getUserImage() {
-		return userImage;
+	public String getUser_image() {
+		return user_image;
 	}
 
-	public void setUserImage(String userImage) {
-		this.userImage = userImage;
+	public void setUser_image(String user_image) {
+		this.user_image = user_image;
 	}
+
+	
     
     
 }
