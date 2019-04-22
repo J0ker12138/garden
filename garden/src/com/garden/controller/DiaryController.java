@@ -100,7 +100,7 @@ public class DiaryController {
 	 * @throws Exception 
 	 */
 	@RequestMapping(value="/createDiarylog")
-	public String createDiarylog(String logDescription, String logDiaryid,MultipartFile file) throws Exception{
+	public @ResponseBody String createDiarylog(String logDescription, String logDiaryid,MultipartFile file) throws Exception{
 		System.out.println(logDescription);
 		System.out.println(logDiaryid);
 		String url="";
@@ -212,6 +212,21 @@ public class DiaryController {
 		diaryService.deleteDiary(diaryid);
 		
 		return "ok";
+		
+	}
+	@RequestMapping(value="/deleteDiarylog")
+	public @ResponseBody String deleteDiarylog(String logdiaryid){
+		
+		try {
+			diaryService.deleteDiarylog(logdiaryid);
+			
+			return "ok";
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+	
+			e.printStackTrace();
+			return "fial";
+		}
 		
 	}
 }

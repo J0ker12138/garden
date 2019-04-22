@@ -34,5 +34,6 @@ public interface DiaryService {
 	public DiaryQueryVo findDiary(Integer diaryId);
 	public DiaryQueryVo getDiaryVo(Integer id);
 	public void deleteDiary(String diaryid);
+	public void deleteDiarylog(String logdiaryid);
 	
 }

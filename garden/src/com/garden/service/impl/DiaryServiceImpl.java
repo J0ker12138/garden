@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.aliyun.oss.OSSClient;
+import com.aliyun.oss.internal.OSSUtils;
 import com.garden.mapper.DiaryMapper;
 import com.garden.mapper.DiarylogMapper;
 import com.garden.po.Diary;
@@ -167,9 +168,28 @@ public class DiaryServiceImpl implements DiaryService {
 		// TODO Auto-generated method stub
 		OSSClientUtil oss=new OSSClientUtil();
 		oss.getOssClient().deleteObject("garden16",diaryMapper.selectByPrimaryKey(Integer.parseInt(diaryid)).getDiaryImage().substring(46));
+		
 		DiarylogExample ex=new DiarylogExample();
 		ex.createCriteria().andLogDiaryidEqualTo(Integer.parseInt(diaryid));
+		List<Diarylog> listlog=diarylogMapper.selectByExample(ex);
+		for (int i = 0; i < listlog.size(); i++) {
+			String url=listlog.get(i).getLogImage();
+			if(url!=null){
+				oss.getOssClient().deleteObject("garden16",url.substring(46));
+			}
+		}
 		diarylogMapper.deleteByExample(ex);
 		diaryMapper.deleteByPrimaryKey(Integer.parseInt(diaryid));
+	}
+
+	@Override
+	public void deleteDiarylog(String logdiaryid) {
+		// TODO Auto-generated method stub
+		
+		OSSClientUtil oss=new OSSClientUtil();
+	
+	
+		oss.getOssClient().deleteObject("garden16",	diarylogMapper.selectByPrimaryKey(Integer.parseInt(logdiaryid)).getLogImage().substring(46));
+		diarylogMapper.deleteByPrimaryKey(Integer.parseInt(logdiaryid));
 	}
 }
