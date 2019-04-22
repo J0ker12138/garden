@@ -208,6 +208,7 @@ public class DiaryController {
 	}
 	@RequestMapping(value="/deleteDiary")
 	public @ResponseBody String deleteDiary(String diaryid){
+		
 		diaryService.deleteDiary(diaryid);
 		
 		return "ok";
