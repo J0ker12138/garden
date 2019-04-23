@@ -37,7 +37,7 @@ public interface DynamicService {
 	 * @param string
 	 * @return
 	 */
-	public List<DynamicAll> findDynamicByUserId(String string);
+	public List<DynamicQueryVo> findDynamicByUserId(String UserId);
 	
 
 	/**
@@ -65,7 +65,15 @@ public interface DynamicService {
 	 */
 	public void addComment(Comment comment);
 	
-	
+	/**
+	 * 根据动态id删除动态
+	 * @param dynamicId
+	 */
+	public void delDynamicByDynamicId(Integer dynamicId);
 
-
+	/**
+	 * 根据评论id删除评论
+	 * @param commentId
+	 */
+	public void delCommentByCommentId(Integer commentId);
 }

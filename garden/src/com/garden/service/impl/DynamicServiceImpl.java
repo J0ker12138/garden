@@ -49,7 +49,7 @@ public class DynamicServiceImpl implements DynamicService {
 	 * 根据用户id查询动态
 	 */
 	@Override
-	public List<DynamicAll> findDynamicByUserId(String UserId) {
+	public List<DynamicQueryVo> findDynamicByUserId(String UserId) {
 		return newDynamicMapper.findDynamicByUserId(UserId);
 	}
 	/**
@@ -80,4 +80,22 @@ public class DynamicServiceImpl implements DynamicService {
 	public void plusWatchNum(Integer DynamicId) {
 		newDynamicMapper.plusWatchNum(DynamicId);
 	}
+	
+	/**
+	 * 根据动态id删除动态
+	 */
+	@Override
+	public void delDynamicByDynamicId(Integer dynamicId) {
+		newDynamicMapper.delDynamicByDynamicId(dynamicId);
+	}
+	
+	/**
+	 * 根据评论id删除评论
+	 */
+	@Override
+	public void delCommentByCommentId(Integer commentId) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 }

@@ -52,16 +52,19 @@
 	</update>
 	
 	<!-- 根据用户id查询用户动态 -->
-	<select id="findDynamicByUserId" parameterType="string" resultType="com.garden.po.DynamicAll">
+	<select id="findDynamicByUserId" parameterType="string" resultType="com.garden.po.DynamicQueryVo">
 		SELECT 
 		d.`dynamic_date`,
 		d.`dynamic_description`,
 		d.`dynamic_id`,
 		d.`dynamic_image`,
 		d.`dynamic_pointnum`,
-		d.`dynamic_viewnum`
+		d.`dynamic_viewnum`,
+		u.`user_image`,
+		u.`user_name`
 		FROM
 			`dynamic` d
+		LEFT JOIN `user` u ON u.`user_id` = d.`dynamic_userid`
 		WHERE d.`dynamic_userid` = #{UserId};
 	</select>
 	
@@ -120,5 +123,14 @@
 				
 	</update>
 	
+	<!-- 根据动态id删除动态 -->
+	<delete id="delDynamicByDynamicId" parameterType="integer">
+		DELETE DYNAMIC WHERE dynamic_id = #{dynamicId};
+	</delete>
+	
+	<!-- 根据评论id删除评论 -->
+	<delete id="delCommentByCommentId" parameterType="integer">
+		DELETE comment WHERE comment_id = #{commentId};
+	</delete>
 
 </mapper>
