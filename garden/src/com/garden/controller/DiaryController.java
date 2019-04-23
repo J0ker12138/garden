@@ -176,8 +176,12 @@ public class DiaryController {
 		return dia;
 		
 	}
-	@RequestMapping(value="/updateDiary")
-	public @ResponseBody String updateDiary(@RequestBody DiaryQueryVo dia){
+	@RequestMapping(value="updateDiary")
+	public @ResponseBody String updateDiary(Diary diary ,MultipartFile file) throws Exception{
+		ossutil.getOssClient().deleteObject("garden16", diary.getDiaryImage().substring(46));
+		diary.setDiaryImage(ossutil.uploadImg2Oss(file));
+		DiaryQueryVo dia=new DiaryQueryVo();
+		dia.setDiary(diary);
 		try {
 			diaryService.updateDiary(dia);
 		} catch (Exception e) {

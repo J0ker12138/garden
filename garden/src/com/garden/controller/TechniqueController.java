@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.garden.po.Technique;
 import com.garden.po.TechniqueQueryVo;
 import com.garden.service.TechniqueService;
 
@@ -50,6 +51,12 @@ public class TechniqueController {
 	public @ResponseBody TechniqueQueryVo getTechById(String techid){
 		TechniqueQueryVo vo=techservice.getTechniqueById(Integer.parseInt(techid));
 		return vo;
+		
+	}
+	@RequestMapping(value="/randomTech")
+	public @ResponseBody List<Technique> randomTech(){
+		List<Technique> list=techservice.getrandowTech();
+		return list;
 		
 	}
 	@RequestMapping(value="/findcollection")

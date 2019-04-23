@@ -19,6 +19,8 @@ public interface TechniqueMapper {
     List<Technique> selectByExample(TechniqueExample example);
 
     Technique selectByPrimaryKey(Integer techId);
+    
+    List<Technique> selectRandomTech();
 
     int updateByExampleSelective(@Param("record") Technique record, @Param("example") TechniqueExample example);
 

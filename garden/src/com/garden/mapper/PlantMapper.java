@@ -33,4 +33,6 @@ public interface PlantMapper {
     int updateByPrimaryKeyWithBLOBs(Plant record);
 
     int updateByPrimaryKey(Plant record);
+
+	List<Plant> selectRandomPlant();
 }

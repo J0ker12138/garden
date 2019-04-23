@@ -114,6 +114,9 @@
       order by ${orderByClause}
     </if>
   </select>
+  <select id="selectRandomPlant" resultMap="BaseResultMap"  >
+   SELECT * FROM plant ORDER BY RAND() LIMIT 3
+  </select>
   <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />

@@ -89,6 +89,9 @@
       order by ${orderByClause}
     </if>
   </select>
+  <select id="selectRandomTech"  resultMap="BaseResultMap">
+   SELECT * FROM technique ORDER BY RAND() LIMIT 3
+  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

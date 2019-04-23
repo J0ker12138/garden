@@ -40,4 +40,10 @@ public class PlantController {
 			return 	plantservice.collectPlant(userid,plantid);
 			
 		}
+		@RequestMapping("randowPlant")
+		public @ResponseBody List<Plant> randowPlant(){
+			
+			return 	plantservice.selectRandomplant();
+			
+		}
 }

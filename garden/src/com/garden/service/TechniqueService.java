@@ -3,6 +3,7 @@ package com.garden.service;
 import java.util.List;
 
 import com.garden.po.PlantQueryVo;
+import com.garden.po.Technique;
 import com.garden.po.TechniqueQueryVo;
 
 public interface TechniqueService {
@@ -24,5 +25,7 @@ public interface TechniqueService {
 
 
 	List<TechniqueQueryVo> getMyCollectionList(String userid);
+
+	List<Technique> getrandowTech();
 
 }

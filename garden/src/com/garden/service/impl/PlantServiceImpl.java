@@ -1,5 +1,6 @@
 package com.garden.service.impl;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -149,6 +150,14 @@ public class PlantServiceImpl implements PlantService {
 			return "fail";
 		
 		}
+	}
+
+	@Override
+	public List<Plant> selectRandomplant() {
+		// TODO Auto-generated method stub
+	
+		
+		return plantMapper.selectRandomPlant();
 	}
 		
 		

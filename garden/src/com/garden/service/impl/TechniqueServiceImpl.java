@@ -94,7 +94,9 @@ public class TechniqueServiceImpl implements TechniqueService {
 		// TODO Auto-generated method stub
 		TechniqueQueryVo techvo=new TechniqueQueryVo();
 		Technique tech=techniquemapper.selectByPrimaryKey(parseInt);
-		tech.setTechViewnum(tech.getTechViewnum()+1);
+		int i=tech.getTechViewnum();
+		tech.setTechViewnum(++i);
+		techniquemapper.updateByPrimaryKey(tech);
 		techvo.setTech(tech);
 		return techvo;
 	}
@@ -188,6 +190,15 @@ public List<TechniqueQueryVo> getMyCollectionList(String userid) {
 		
 	}
 	return listvo;
+}
+
+
+@Override
+public List<Technique> getrandowTech() {
+	// TODO Auto-generated method stub
+	
+	
+	return techniquemapper.selectRandomTech();
 }
 
 }

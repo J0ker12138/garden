@@ -17,4 +17,6 @@ public interface PlantService {
 		public PlantQueryVo getPlantById(int parseInt, String userid);
 
 		public String collectPlant(String userid, String plantid);
+
+		public List<Plant> selectRandomplant();
 }
