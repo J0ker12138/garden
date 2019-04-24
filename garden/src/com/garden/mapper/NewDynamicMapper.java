@@ -7,7 +7,6 @@ import com.garden.po.CommentQueryVo;
 import com.garden.po.DynamicAll;
 import com.garden.po.DynamicQueryVo;
 
-
 public interface NewDynamicMapper {
 	/**
 	 * 查询全部动态
@@ -34,7 +33,7 @@ public interface NewDynamicMapper {
 	 * @param userId
 	 * @return
 	 */
-	public List<DynamicAll> findDynamicByUserId(String userId);
+	public List<DynamicQueryVo> findDynamicByUserId(String UserId);
 	/**
 	 * 根据动态id查询详细动态
 	 * @param DynamicId
@@ -58,4 +57,16 @@ public interface NewDynamicMapper {
 	 * @param comment
 	 */
 	public void addComment(Comment comment);
+	
+	/**
+	 * 根据动态id删除动态
+	 * @param dynamicId
+	 */
+	public void delDynamicByDynamicId(Integer dynamicId);
+	
+	/**
+	 * 根据评论id删除评论
+	 * @param commentId
+	 */
+	public void delCommentByCommentId(Integer commentId);
 }

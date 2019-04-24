@@ -64,7 +64,7 @@ public class DynamicController {
 	 * @return
 	 */
 	@RequestMapping("/findDynamicByUserId")
-	public @ResponseBody List<DynamicAll> findDynamicByUserId(@RequestBody DynamicAll dynamicAll) {
+	public @ResponseBody List<DynamicQueryVo> findDynamicByUserId(@RequestBody DynamicAll dynamicAll) {
 		return dynamicService.findDynamicByUserId(dynamicAll.getDynamic_userid());
 	}
 	/**
@@ -99,4 +99,24 @@ public class DynamicController {
 		return comment;
 	}
 	
+	/**
+	 * 根据动态id删除动态
+	 * @param dynamicAll
+	 * @return
+	 */
+	@RequestMapping("/delDynamicByDynamicId")
+	public @ResponseBody DynamicAll delDynamicByDynamicId(@RequestBody DynamicAll dynamicAll) {
+		dynamicService.delDynamicByDynamicId(dynamicAll.getDynamic_id());
+		return dynamicAll;
+	}
+	
+	/**
+	 * 根据评论id删除评论
+	 * @param comment
+	 * @return
+	 */
+	public @ResponseBody Comment delCommentByCommentId(@RequestBody CommentQueryVo comment) {
+		dynamicService.delCommentByCommentId(comment.getComment_id());
+		return comment;
+	}
 }
