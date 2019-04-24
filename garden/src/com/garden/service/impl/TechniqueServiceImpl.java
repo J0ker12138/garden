@@ -142,27 +142,33 @@ public class TechniqueServiceImpl implements TechniqueService {
 	}
 
 @Override
-	public String collectTech(Integer techid, String userid,String buer) {
-		// TODO Auto-generated method stub
-	Collection co=new Collection();
-	co.setCollDynamicid(techid);
-	co.setCollUserid(userid);
-	
-	if ("true".equals(buer)) {
-		
-		
-		
-		collectionmapper.insert(co);
+	public String collectTech(Integer techid, String 	userid){
+			CollectionExample ex=new CollectionExample();
+	com.garden.po.CollectionExample.Criteria criteria=ex.createCriteria();
+	criteria.andCollDynamicidEqualTo(techid);
+	criteria.andCollUseridEqualTo(userid);
+	Collection coll=new Collection();
+	coll.setCollUserid(userid);
+	coll.setCollDynamicid(techid);
+	List<Collection> selectByExample = collectionmapper.selectByExample(ex);
+	if (selectByExample.size()==0) {
+		collectionmapper.insert(coll);
 		return "ok";
 	}else{
-		CollectionExample ex=new CollectionExample();
-		ex.createCriteria().andCollDynamicidEqualTo(techid);
-		ex.createCriteria().andCollUseridEqualTo(userid);
 		collectionmapper.deleteByExample(ex);
 		return "fail";
 	}
+	
+		
+		
+		
+
+	
+		
 		
 	}
+		
+	
 
 
 @Override
@@ -170,11 +176,16 @@ public String findcollection(String techid, String userid) {
 	// TODO Auto-generated method stub
 	Collection co=new Collection();
 	CollectionExample cex=new CollectionExample();
-	cex.createCriteria().andCollDynamicidEqualTo(Integer.parseInt(techid));
-	cex.createCriteria().andCollUseridEqualTo(userid);
+	com.garden.po.CollectionExample.Criteria criteria=cex.createCriteria();
+	criteria.andCollDynamicidEqualTo(Integer.parseInt(techid));
+	criteria.andCollUseridEqualTo(userid);
 	List<Collection> list=new ArrayList<>();
 	list=collectionmapper.selectByExample(cex);
-	if (list.size()<1&&list!=null) {
+	for (int i = 0; i < list.size(); i++) {
+		System.out.println(list.get(i).getCollDynamicid());
+		System.out.println(list.get(i).getCollUserid());
+	}
+	if (list.size()!=0) {
 		return "true";
 	}
 	return "false";

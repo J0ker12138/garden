@@ -18,7 +18,7 @@ public interface TechniqueService {
 
 	List<TechniqueQueryVo> recommendTech();
 
-	String collectTech(Integer techid, String userid, String buer);
+	String collectTech(Integer techid, String userid);
 
 	String findcollection(String techid, String userid);
 

@@ -84,13 +84,11 @@ public class TechniqueController {
 		
 	}
 	@RequestMapping(value="/collectTechById")
-	public @ResponseBody String getTechById(Integer techid,String userid,String buer){
-		System.out.println(techid.toString()+userid+buer);
-		try {
-			return techservice.collectTech(techid,userid,buer);
-		} catch (Exception e) {
-			return "fail";
-		}
+	public @ResponseBody String getTechById(Integer techid,String userid){
+		System.out.println(techid.toString()+userid);
+		
+			return techservice.collectTech(techid,userid);
+		
 		
 		
 	}
