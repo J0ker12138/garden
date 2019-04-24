@@ -66,9 +66,21 @@ public class TechniqueController {
 		
 	}
 	@RequestMapping(value="/getMyCollectionList")
-	public @ResponseBody List<TechniqueQueryVo> getMyCollectionList(String userid){
-		List<TechniqueQueryVo> list=techservice.getMyCollectionList(userid);
-		return list;
+	public @ResponseBody TechniqueQueryVo getMyCollectionList(String userid){
+		TechniqueQueryVo vo=techservice.getMyCollectionList(userid);
+		return vo;
+		
+	}
+	@RequestMapping(value="/deleteTechById")
+	public @ResponseBody String deleteTechById(String techid,String userid){
+		try {
+			techservice.deleteTechById(techid,userid);
+			return "ok";
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return "fail";
+		}
 		
 	}
 	@RequestMapping(value="/collectTechById")

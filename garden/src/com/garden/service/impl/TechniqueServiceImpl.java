@@ -7,10 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.garden.mapper.CollectionMapper;
+import com.garden.mapper.PlantMapper;
 import com.garden.mapper.TechniqueMapper;
 import com.garden.mapper.UserMapper;
 import com.garden.po.Collection;
 import com.garden.po.CollectionExample;
+import com.garden.po.Plant;
 import com.garden.po.PlantQueryVo;
 import com.garden.po.Technique;
 import com.garden.po.TechniqueExample;
@@ -30,6 +32,8 @@ public class TechniqueServiceImpl implements TechniqueService {
 	UserMapper usermapper;
 	@Autowired
 	CollectionMapper collectionmapper;
+	@Autowired
+	PlantMapper plantmapper;
 	@Override
 	public TechniqueQueryVo searchAll(TechniqueQueryVo tech) {
 		// TODO Auto-generated method stub
@@ -176,20 +180,32 @@ public String findcollection(String techid, String userid) {
 	return "false";
 }
 @Override
-public List<TechniqueQueryVo> getMyCollectionList(String userid) {
+public TechniqueQueryVo getMyCollectionList(String userid) {
 	// TODO Auto-generated method stub
 	List<TechniqueQueryVo> listvo=new ArrayList<>();
-	TechniqueExample tex=new TechniqueExample();
-	tex.createCriteria().andTechUseridEqualTo(userid);
-	List<Technique> list=techniquemapper.selectByExample(tex);
+	List<PlantQueryVo> plantvolist=new ArrayList<>();
+	CollectionExample cex=new CollectionExample();
+	com.garden.po.CollectionExample.Criteria criteria=cex.createCriteria();
+	criteria.andCollUseridEqualTo(userid);
+	List<Collection> list=collectionmapper.selectByExample(cex);
 	for (int i = 0; i < list.size(); i++) {
-		TechniqueQueryVo techvo=new TechniqueQueryVo();
-		techvo.setTech(list.get(i));
-		User u=new User();
-		listvo.add(techvo);
-		
+		if (list.get(i).getCollDynamicid()!=null) {
+			Technique tech=techniquemapper.selectByPrimaryKey(list.get(i).getCollDynamicid());
+			TechniqueQueryVo vo=new TechniqueQueryVo();
+			vo.setTech(tech);
+			listvo.add(vo);
+		}
+		if(list.get(i).getCollPlantid()!=null){
+			Plant plant=plantmapper.selectByPrimaryKey(list.get(i).getCollPlantid());
+			PlantQueryVo vo=new PlantQueryVo();
+			vo.setPlant(plant);
+			plantvolist.add(vo);
+		}
 	}
-	return listvo;
+	TechniqueQueryVo techvo=new TechniqueQueryVo();
+	techvo.setPlantlist(plantvolist);
+	techvo.setTechlist(listvo);
+	return techvo;
 }
 
 
@@ -199,6 +215,18 @@ public List<Technique> getrandowTech() {
 	
 	
 	return techniquemapper.selectRandomTech();
+}
+
+
+@Override
+public void deleteTechById(String techid,String userid) {
+	// TODO Auto-generated method stub
+	CollectionExample cex=new CollectionExample();
+	com.garden.po.CollectionExample.Criteria criteria=cex.createCriteria();
+	criteria.andCollDynamicidEqualTo(Integer.parseInt(techid));
+	criteria.andCollUseridEqualTo(userid);
+	collectionmapper.deleteByExample(cex);
+	
 }
 
 }

@@ -24,8 +24,12 @@ public interface TechniqueService {
 
 
 
-	List<TechniqueQueryVo> getMyCollectionList(String userid);
+TechniqueQueryVo getMyCollectionList(String userid);
 
 	List<Technique> getrandowTech();
+
+	void deleteTechById(String techid,String userid);
+
+
 
 }
