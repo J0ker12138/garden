@@ -159,6 +159,16 @@ public class PlantServiceImpl implements PlantService {
 		
 		return plantMapper.selectRandomPlant();
 	}
+
+	@Override
+	public void deletePlantByid(String userid, String plantid) {
+		// TODO Auto-generated method stub
+			CollectionExample cex=new CollectionExample();
+			com.garden.po.CollectionExample.Criteria criteria=cex.createCriteria();
+			criteria.andCollPlantidEqualTo(Integer.parseInt(plantid));
+			criteria.andCollUseridEqualTo(userid);
+			collmapper.deleteByExample(cex);
+	}
 		
 		
 

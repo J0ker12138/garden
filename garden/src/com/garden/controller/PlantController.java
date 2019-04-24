@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.garden.mapper.PlantMapper;
 import com.garden.po.Plant;
 import com.garden.po.PlantQueryVo;
 import com.garden.service.PlantService;
@@ -15,6 +16,7 @@ import com.garden.service.PlantService;
 public class PlantController {
 		@Autowired
 		PlantService plantservice;
+		
 		@RequestMapping("getPlantList")
 		public @ResponseBody List<PlantQueryVo> getPlantList(String word){
 			List<PlantQueryVo> list=plantservice.getAllPlant();
@@ -44,6 +46,20 @@ public class PlantController {
 		public @ResponseBody List<Plant> randowPlant(){
 			
 			return 	plantservice.selectRandomplant();
+			
+		}
+		@RequestMapping("deletePlantById")
+		public @ResponseBody String deletePlantById(String userid ,String plantid){
+			try {
+				plantservice.deletePlantByid(userid,plantid);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return "fail";
+			}
+			return "ok";
+		
+			
 			
 		}
 }

@@ -19,4 +19,6 @@ public interface PlantService {
 		public String collectPlant(String userid, String plantid);
 
 		public List<Plant> selectRandomplant();
+
+		public void deletePlantByid(String userid, String plantid);
 }

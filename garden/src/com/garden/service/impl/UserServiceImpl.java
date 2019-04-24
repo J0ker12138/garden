@@ -47,7 +47,9 @@ public class UserServiceImpl implements UserService{
 		u.setUserId(openid);
 		u=usermapper.selectByPrimaryKey(openid);
 		if (u==null) {
-			usermapper.insert(u);
+			User u1=new User();
+			u1.setUserId(openid);
+			usermapper.insert(u1);
 		}
 	}
 
