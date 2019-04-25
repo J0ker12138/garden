@@ -12,6 +12,7 @@
 			d.`dynamic_pointnum`,
 			d.`dynamic_viewnum`,
 			d.`dynamic_userid`,
+			d.`dynamic_commentnum`,
 			u.`user_image`,
 			u.`user_name`
 		FROM
@@ -24,12 +25,14 @@
 		 INSERT INTO `dynamic` (
                           dynamic_userid,  
                           dynamic_description,  
-                          dynamic_image  
+                          dynamic_image,
+                          dynamic_commentnum  
                           )  
               VALUES   (#{dynamic_userid},  
                           #{dynamic_userid},  
                           #{dynamic_description},  
                           #{dynamic_image},  
+                          0
                           );  
 	</insert>
 
@@ -60,6 +63,7 @@
 		d.`dynamic_image`,
 		d.`dynamic_pointnum`,
 		d.`dynamic_viewnum`,
+		d.`dynamic_commentnum`,
 		u.`user_image`,
 		u.`user_name`
 		FROM
@@ -103,13 +107,15 @@
 		INSERT INTO `comment` (
 		  `comment_dynamicid`,
 		  `comment_description`,
-		  `comment_userid`
+		  `comment_userid`,
+		  `comment_pointnum`
 		) 
 		VALUES
 		  (
 		    #{comment_dynamicid},
 		    #{comment_description},
-		    #{comment_userid}
+		    #{comment_userid},
+		    0
 		  ) ;
 	</insert>
 	
@@ -123,14 +129,75 @@
 				
 	</update>
 	
-	<!-- 根据动态id删除动态 -->
-	<delete id="delDynamicByDynamicId" parameterType="integer">
-		DELETE DYNAMIC WHERE dynamic_id = #{dynamicId};
+<!-- ///////////////////////与下边方法实现一个功能///////////////////////// -->	
+	<!-- 根据动态id删除评论 -->
+	<delete id="delCommentByDynamicId" parameterType="integer">
+		DELETE FROM COMMENT WHERE comment_dynamicid=#{dynamicId};
 	</delete>
 	
+	<!-- 根据动态id删除动态 -->
+	<delete id="delDynamicByDynamicId" parameterType="integer">
+		DELETE FROM DYNAMIC WHERE dynamic_id = #{dynamicId};
+	</delete>
+<!-- /////////////////////////////////////////////////////////////// -->
+
+
 	<!-- 根据评论id删除评论 -->
 	<delete id="delCommentByCommentId" parameterType="integer">
-		DELETE comment WHERE comment_id = #{commentId};
+		DELETE FROM comment WHERE comment_id = #{commentId};
 	</delete>
 
+	<!-- 根据用户id查询动态id -->
+	<select id="getDynamicIdByUserId" parameterType="string" resultType="integer">
+		SELECT 
+		  `dynamic_id`
+		FROM
+		  `dynamic` WHERE `dynamic_userid` = #{UserId};
+	</select>
+	
+	<select id="findMyCommentByDynamicId" parameterType="com.garden.po.DynamicQueryVo" resultType="com.garden.po.CommentQueryVo">
+		SELECT 
+		  c.`comment_id`,
+		  c.`comment_dynamicid`,
+		  c.`comment_description`,
+		  c.`comment_date`,
+		  u.`user_image`,
+		  u.`user_name`,
+		  d.`dynamic_image`,
+		  d.`dynamic_description`
+		FROM
+		  `comment` c
+		LEFT JOIN `dynamic` d ON d.`dynamic_id` = c.`comment_dynamicid`
+		LEFT JOIN `user` u ON u.`user_id` = c.`comment_userid`
+		<where>
+			<foreach collection="dynamicIdList" open="c.`comment_dynamicid` IN (" item="comment_dynamicid" separator="," close=")">
+				#{comment_dynamicid}
+			</foreach>
+		</where>
+	</select>
+	<!-- ======================================================与下边方式共同完成一个功能 -->
+	<select id="countCommentNum" parameterType="integer" resultType="integer">
+		 SELECT COUNT(*) FROM COMMENT WHERE comment_dynamicid = #{dynamicId};
+	</select>
+	
+	
+	<select id="findDynamicAllByDynamicId" parameterType="integer" resultType="com.garden.po.DynamicAll">
+		SELECT 
+		  `dynamic_id`,
+		  `dynamic_commentnum` 
+		FROM
+		  `dynamic` 
+		  WHERE `dynamic_id`=#{dynamicId};
+	</select>
+	
+	<update id="updateCommentNum" parameterType="com.garden.po.DynamicAll">
+		UPDATE 
+			`dynamic` 
+		SET
+			`dynamic_commentnum` = #{dynamic_commentnum}
+		WHERE 
+			`dynamic_id` = #{dynamic_id};
+	</update>
+	
+	<!-- ========================================================= -->
 </mapper>

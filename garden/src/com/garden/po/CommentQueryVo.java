@@ -1,5 +1,7 @@
 package com.garden.po;
 
+import java.util.Date;
+
 public class CommentQueryVo extends Comment{
 
     private String user_id;
@@ -7,6 +9,10 @@ public class CommentQueryVo extends Comment{
     private String user_name;
 
     private String user_image;
+    
+    private String dynamic_description;
+    
+    private String dynamic_image;
 
 	public String getUser_id() {
 		return user_id;
@@ -32,7 +38,20 @@ public class CommentQueryVo extends Comment{
 		this.user_image = user_image;
 	}
 
-	
-    
+	public String getDynamic_description() {
+		return dynamic_description;
+	}
+
+	public void setDynamic_description(String dynamic_description) {
+		this.dynamic_description = dynamic_description;
+	}
+
+	public String getDynamic_image() {
+		return dynamic_image;
+	}
+
+	public void setDynamic_image(String dynamic_image) {
+		this.dynamic_image = dynamic_image;
+	}
     
 }

@@ -1,6 +1,7 @@
 package com.garden.po;
 
 import java.util.Date;
+import java.util.List;
 /**
  * 动态的全部实现
  * @author 73230
@@ -8,12 +9,14 @@ import java.util.Date;
  */
 public class DynamicQueryVo extends DynamicAll{
 
-    
-    private String user_name;
+	private List<Integer> dynamicIdList;
+	
+	private String user_name;
 
     private String user_image;
     
     private Integer comment_num;
+
 
 	public Integer getComment_num() {
 		return comment_num;
@@ -39,5 +42,11 @@ public class DynamicQueryVo extends DynamicAll{
 		this.user_image = user_image;
 	}
 
-    
+	public List<Integer> getList() {
+		return dynamicIdList;
+	}
+
+	public void setList(List<Integer> dynamicIdList) {
+		this.dynamicIdList = dynamicIdList;
+	}
 }

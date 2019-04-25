@@ -10,6 +10,7 @@ import com.garden.po.Comment;
 import com.garden.po.CommentQueryVo;
 import com.garden.po.DynamicAll;
 import com.garden.po.DynamicQueryVo;
+import com.garden.po.User;
 import com.garden.service.DynamicService;
 
 @Service("dynamicService")
@@ -23,7 +24,6 @@ public class DynamicServiceImpl implements DynamicService {
 	@Override
 	public List<DynamicQueryVo> selectDynamicList() {
 		return newDynamicMapper.selectDynamicList();
-		
 	}
 	/**
 	 * 添加动态
@@ -72,6 +72,10 @@ public class DynamicServiceImpl implements DynamicService {
 	 */
 	public void addComment(Comment comment) {
 		newDynamicMapper.addComment(comment);
+		Integer integer = newDynamicMapper.countCommentNum(comment.getComment_dynamicid());
+		DynamicAll dynamicAll = newDynamicMapper.findDynamicAllByDynamicId(comment.getComment_dynamicid());
+		dynamicAll.setDynamic_commentnum(integer);
+		newDynamicMapper.updateCommentNum(dynamicAll);
 	}
 	/**
 	 * 观看量+
@@ -86,6 +90,7 @@ public class DynamicServiceImpl implements DynamicService {
 	 */
 	@Override
 	public void delDynamicByDynamicId(Integer dynamicId) {
+		newDynamicMapper.delCommentByDynamicId(dynamicId);
 		newDynamicMapper.delDynamicByDynamicId(dynamicId);
 	}
 	
@@ -94,8 +99,22 @@ public class DynamicServiceImpl implements DynamicService {
 	 */
 	@Override
 	public void delCommentByCommentId(Integer commentId) {
-		// TODO Auto-generated method stub
-		
+		newDynamicMapper.delCommentByCommentId(commentId);
+		Integer integer = newDynamicMapper.countCommentNum(commentId);
+		DynamicAll dynamicAll = newDynamicMapper.findDynamicAllByDynamicId(commentId);
+		dynamicAll.setDynamic_commentnum(integer);
+		newDynamicMapper.updateCommentNum(dynamicAll);
+	}
+	
+	/**
+	 * 传入userid,查询动态id后,使用动态id查询评论.
+	 */
+	@Override
+	public List<CommentQueryVo> findMyCommentByDynamicId(String userid) {
+		List<Integer> list = newDynamicMapper.getDynamicIdByUserId(userid);
+		DynamicQueryVo dqv = new DynamicQueryVo();
+		dqv.setList(list);
+		return newDynamicMapper.findMyCommentByDynamicId(dqv);
 	}
 	
 }

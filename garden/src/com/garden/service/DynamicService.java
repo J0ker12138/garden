@@ -6,6 +6,7 @@ import com.garden.po.Comment;
 import com.garden.po.CommentQueryVo;
 import com.garden.po.DynamicAll;
 import com.garden.po.DynamicQueryVo;
+import com.garden.po.User;
 
 public interface DynamicService {
 
@@ -76,4 +77,11 @@ public interface DynamicService {
 	 * @param commentId
 	 */
 	public void delCommentByCommentId(Integer commentId);
+	
+	/**
+	 * 根据
+	 * @param cqv
+	 * @return
+	 */
+	public List<CommentQueryVo> findMyCommentByDynamicId(String userid);
 }

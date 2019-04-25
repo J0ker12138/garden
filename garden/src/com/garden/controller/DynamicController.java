@@ -105,9 +105,10 @@ public class DynamicController {
 	 * @return
 	 */
 	@RequestMapping("/delDynamicByDynamicId")
-	public @ResponseBody DynamicAll delDynamicByDynamicId(@RequestBody DynamicAll dynamicAll) {
+	public @ResponseBody String delDynamicByDynamicId(@RequestBody DynamicAll dynamicAll) {
+		System.out.println(dynamicAll.getDynamic_id());
 		dynamicService.delDynamicByDynamicId(dynamicAll.getDynamic_id());
-		return dynamicAll;
+		return "ok";
 	}
 	
 	/**
@@ -115,8 +116,19 @@ public class DynamicController {
 	 * @param comment
 	 * @return
 	 */
-	public @ResponseBody Comment delCommentByCommentId(@RequestBody CommentQueryVo comment) {
+	@RequestMapping("/delCommentByCommentId")
+	public @ResponseBody String delCommentByCommentId(@RequestBody CommentQueryVo comment) {
+		System.out.println(comment.getComment_id());
 		dynamicService.delCommentByCommentId(comment.getComment_id());
-		return comment;
+		return "ok";
+	}
+
+	/**
+	 * 根据userid查询评论
+	 * @param dynamicAll
+	 */
+	@RequestMapping("/findMyCommentByDynamicId")
+	public @ResponseBody List<CommentQueryVo> findMyCommentByDynamicId (@RequestBody DynamicAll dynamicAll) {
+		return dynamicService.findMyCommentByDynamicId(dynamicAll.getDynamic_userid());
 	}
 }

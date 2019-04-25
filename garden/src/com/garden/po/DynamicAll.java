@@ -18,7 +18,15 @@ public class DynamicAll {
 
     private String dynamic_image;
     
+    private Integer dynamic_commentnum;
     
+	public Integer getDynamic_commentnum() {
+		return dynamic_commentnum;
+	}
+
+	public void setDynamic_commentnum(Integer dynamic_commentnum) {
+		this.dynamic_commentnum = dynamic_commentnum;
+	}
 
 	public Integer getDynamic_id() {
 		return dynamic_id;
