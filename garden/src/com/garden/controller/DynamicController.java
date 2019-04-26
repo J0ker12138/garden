@@ -7,18 +7,24 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.garden.po.Comment;
 import com.garden.po.CommentQueryVo;
+import com.garden.po.Diarylog;
+import com.garden.po.DiarylogQueryVo;
 import com.garden.po.DynamicAll;
 import com.garden.po.DynamicQueryVo;
 import com.garden.service.DynamicService;
+import com.garden.service.impl.OSSClientUtil;
 
 @Controller
 public class DynamicController {
 
 	@Autowired
 	DynamicService dynamicService;
+	@Autowired
+	private OSSClientUtil ossutil;
 	/**
 	 * 查询全部动态
 	 * @return
@@ -31,32 +37,70 @@ public class DynamicController {
 	 * 添加动态
 	 * @param dynamicAll
 	 * @return
+	 * @throws Exception 
 	 */
 	@RequestMapping("/insertDynamic")
-	public @ResponseBody DynamicAll insertDynamic(@RequestBody DynamicAll dynamicAll) {
-		System.out.println(dynamicAll.getDynamic_image());
+	public @ResponseBody String insertDynamic(String dynamic_description, String dynamic_userid,MultipartFile file) throws Exception {
+		System.out.println(dynamic_description);
+		System.out.println(dynamic_userid);
+		String url="";
+		if (!file.isEmpty()) {
+		url=ossutil.uploadImg2Oss(file);
+		}
+		System.out.println(url);
+		DynamicAll dynamicAll=new DynamicAll();
+		
+		dynamicAll.setDynamic_description(dynamic_description);
+		dynamicAll.setDynamic_userid(dynamic_userid);
+		dynamicAll.setDynamic_image(url);
+		
 		dynamicService.insertDynamic(dynamicAll);
-		return dynamicAll;
+		
+		return "ok";
 	}
+	
 	/**
-	 * 点赞+
+	 * 点赞加
 	 * @param dynamicId
 	 */
-	@RequestMapping("/plusPointNum")
-	public @ResponseBody DynamicAll plusPointNum(@RequestBody DynamicAll DynamicAll) {
-		dynamicService.plusPointNum(DynamicAll.getDynamic_id());
-		return DynamicAll;
-	}
+	//-------------------------------------------------------------------------------------------
+	/*
+	 * @RequestMapping("/plusPointNum") public @ResponseBody DynamicAll
+	 * plusPointNum(@RequestBody DynamicAll DynamicAll) {
+	 * dynamicService.plusPointNum(DynamicAll.getDynamic_id()); return DynamicAll; }
+	 */
 	/**
 	 * 点赞减
 	 * @param dynamicAll
 	 * @return
 	 */
-	@RequestMapping("/delPointNum")
-	public @ResponseBody DynamicAll delPointNum(@RequestBody DynamicAll dynamicAll) {
-		dynamicService.delPointNum(dynamicAll.getDynamic_id());
-		return dynamicAll;
+	/*
+	 * @RequestMapping("/delPointNum") public @ResponseBody DynamicAll
+	 * delPointNum(@RequestBody DynamicAll dynamicAll) {
+	 * dynamicService.delPointNum(dynamicAll.getDynamic_id()); return dynamicAll; }
+	 */
+	//--------------------------------------------------------------------------------------------
+	
+	//====================================================================测试代码
+	/**
+	 * 根据动态id和用户id设置动态
+	 * @param dynamicAll
+	 * @return
+	 */
+	@RequestMapping("/pointNum")
+	public @ResponseBody String pointNum(@RequestBody DynamicAll dynamicAll) {
+		Integer zhuang_tai = dynamicService.PointNum(dynamicAll);
+		if(zhuang_tai == -1) {
+			return "false";
+		}
+			String i = zhuang_tai.toString();
+		return i;
 	}
+
+	//==================================================================================
+	
+	
+	
 	
 	/**
 	 * 根据用户id查询该用户的动态
@@ -94,9 +138,9 @@ public class DynamicController {
 	 * @return
 	 */
 	@RequestMapping("/addComment")
-	public @ResponseBody Comment addComment(@RequestBody Comment comment) {
+	public @ResponseBody String addComment(@RequestBody Comment comment) {
 		dynamicService.addComment(comment);
-		return comment;
+		return "ok";
 	}
 	
 	/**

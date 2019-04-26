@@ -25,13 +25,41 @@ public interface DynamicService {
 	 * 点赞加
 	 * @param dynamicId
 	 */
-	public void plusPointNum(Integer dynamicId);
+	//public void plusPointNum(Integer dynamicId);
 	
 	/**
 	 * 根据动态id取消点赞
 	 * @param dynamicId
 	 */
-	public void delPointNum(Integer dynamicId);
+	//public void delPointNum(Integer dynamicId);
+	
+	
+	
+	
+	
+	
+	
+	//======================================================测试代码
+	/**
+	 * 点赞
+	 * @param dynamicAll
+	 * @return
+	 */
+	
+	public Integer PointNum(DynamicAll dynamicAll);
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	/**
 	 * 根据用户id查询动态

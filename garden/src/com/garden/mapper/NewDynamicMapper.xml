@@ -26,33 +26,37 @@
                           dynamic_userid,  
                           dynamic_description,  
                           dynamic_image,
-                          dynamic_commentnum  
+                          dynamic_commentnum,  
+                          dynamic_viewnum,
+                          dynamic_pointnum
                           )  
-              VALUES   (#{dynamic_userid},  
+              VALUES   ( 
                           #{dynamic_userid},  
                           #{dynamic_description},  
                           #{dynamic_image},  
+                          0,
+                          0,
                           0
                           );  
 	</insert>
 
 	<!-- 点赞+ -->
-	<update id="plusPointNum" parameterType="integer">
+	<!-- <update id="plusPointNum" parameterType="integer">
 		UPDATE 
 		  `dynamic` 
 		SET
 		  `dynamic_pointnum` = `dynamic_pointnum` +1
 		WHERE `dynamic_id` = #{DynamicId};
-	</update>
+	</update> -->
 
 	<!-- 点赞- -->
-	<update id="delPointNum" parameterType="integer">
+	<!-- <update id="delPointNum" parameterType="integer">
 		UPDATE 
 			`dynamic` 
 		SET
 			`dynamic_pointnum` = `dynamic_pointnum` -1
 			WHERE `dynamic_id` = #{DynamicId};
-	</update>
+	</update> -->
 	
 	<!-- 根据用户id查询用户动态 -->
 	<select id="findDynamicByUserId" parameterType="string" resultType="com.garden.po.DynamicQueryVo">
@@ -180,7 +184,6 @@
 		 SELECT COUNT(*) FROM COMMENT WHERE comment_dynamicid = #{dynamicId};
 	</select>
 	
-	
 	<select id="findDynamicAllByDynamicId" parameterType="integer" resultType="com.garden.po.DynamicAll">
 		SELECT 
 		  `dynamic_id`,
@@ -200,4 +203,63 @@
 	</update>
 	
 	<!-- ========================================================= -->
+	
+	
+	
+	
+	
+	
+	<!-- ========================================测试代码====================================================== -->
+	
+	<select id="findDynamiclikeByUseridAndDynamicId" parameterType="com.garden.po.DynamicAll" resultType="integer">
+		SELECT 
+		  `dynamiclike_zt` 
+		FROM
+		  `dynamiclike` 
+		WHERE dynamiclike_userid = #{dynamic_userid} AND dynamiclike_dynamicid= #{dynamic_id};
+	</select>
+	
+	<insert id="insertDynamiclikeByUseridAndDynamicId" parameterType="com.garden.po.DynamicAll">
+		insert into `dynamiclike` (
+		  `dynamiclike_userid`,
+		  `dynamiclike_dynamicid`,
+		  `dynamiclike_zt`
+		) 
+		values
+		  (
+		    #{dynamic_userid},
+		    #{dynamic_dynamicid},
+		    1
+		  ) ;
+	</insert>
+	
+	<update id="delDynamiclikeByUseridAndDynamicId" parameterType="com.garden.po.DynamicAll">
+		UPDATE 
+		  `dynamiclike` 
+		SET
+		  `dynamiclike_zt` = 1
+		WHERE `dynamiclike_userid` = #{dynamic_userid} AND `dynamiclike_dynamicid` = #{dynamic_id}  ;
+	</update>
+	
+	<update id="addDynamiclikeByUseridAndDynamicId" parameterType="com.garden.po.DynamicAll">
+		UPDATE 
+		  `dynamiclike` 
+		SET
+		  `dynamiclike_zt` = 0
+		WHERE `dynamiclike_userid` = #{dynamic_userid} AND `dynamiclike_dynamicid` = #{dynamic_id}  ;
+	</update>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </mapper>

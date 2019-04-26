@@ -25,13 +25,13 @@ public interface NewDynamicMapper {
 	 * 点赞加
 	 * @param dynamicId
 	 */
-	public void plusPointNum(Integer dynamicId);
+	//public void plusPointNum(Integer dynamicId);
 	
 	/**
 	 * 点赞减
 	 * @param dynamicId
 	 */
-	public void delPointNum(Integer dynamicId);
+	//public void delPointNum(Integer dynamicId);
 	
 	/**
 	 * 根据用户id查询用户动态
@@ -119,4 +119,29 @@ public interface NewDynamicMapper {
 	public void updateCommentNum(DynamicAll dynamicAll);
 	
 	//=======================================================
+	
+	
+	
+	
+	
+	
+	//====================================================测试代码
+	
+	
+	//根据动态id和用户id查询是否点赞   如果返回null执行第二个方法  如果返回值为1执行第三个方法
+	public Integer findDynamiclikeByUseridAndDynamicId(DynamicAll dynamicAll);
+	
+	//如果上一个返回null执行此功能       根据动态id和用户id创建新的dynamiclike表,设置状态值为1
+	public void insertDynamiclikeByUseridAndDynamicId(DynamicAll dynamicAll);
+	
+	//如果返回值为1 执行此方法 点赞减
+	public void delDynamiclikeByUseridAndDynamicId(DynamicAll dynamicAll);
+	
+	//如果返回值为0 执行此方法 点赞加
+	public void addDynamiclikeByUseridAndDynamicId(DynamicAll dynamicAll);
+		
+	
+	
+	
+	
 }

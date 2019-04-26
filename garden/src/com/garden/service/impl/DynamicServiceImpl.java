@@ -35,16 +35,18 @@ public class DynamicServiceImpl implements DynamicService {
 	/**
 	 * 点赞+
 	 */
-	@Override
-	public void plusPointNum(Integer dynamicId) {
-		newDynamicMapper.plusPointNum(dynamicId);
-	}
+	/*
+	 * @Override public void plusPointNum(Integer dynamicId) {
+	 * newDynamicMapper.plusPointNum(dynamicId); }
+	 */
 	/**
 	 * 点赞减
 	 */
-	public void delPointNum(Integer dynamicId) {
-		newDynamicMapper.delPointNum(dynamicId);
-	}
+
+	/*
+	 * public void delPointNum(Integer dynamicId) {
+	 * newDynamicMapper.delPointNum(dynamicId); }
+	 */
 	/**
 	 * 根据用户id查询动态
 	 */
@@ -115,6 +117,32 @@ public class DynamicServiceImpl implements DynamicService {
 		DynamicQueryVo dqv = new DynamicQueryVo();
 		dqv.setList(list);
 		return newDynamicMapper.findMyCommentByDynamicId(dqv);
+	}
+	
+	
+	
+	
+	//=====================================================测试代码
+	/**
+	 * 点赞
+	 */
+	@Override
+	public Integer PointNum(DynamicAll dynamicAll) {
+		Integer zhuan_tai = newDynamicMapper.findDynamiclikeByUseridAndDynamicId(dynamicAll);
+		if(zhuan_tai == null) {
+			newDynamicMapper.insertDynamiclikeByUseridAndDynamicId(dynamicAll);
+			zhuan_tai = 1;
+			return zhuan_tai;
+		}else if(zhuan_tai == 1) {
+			newDynamicMapper.delDynamiclikeByUseridAndDynamicId(dynamicAll);
+			zhuan_tai = 0;
+			return zhuan_tai;
+		}else if (zhuan_tai == 0) {
+			newDynamicMapper.addDynamiclikeByUseridAndDynamicId(dynamicAll);
+			zhuan_tai = 1;
+			return zhuan_tai;
+		}
+		return -1;
 	}
 	
 }
