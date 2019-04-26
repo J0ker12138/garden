@@ -123,7 +123,7 @@ public class TechniqueServiceImpl implements TechniqueService {
 		return listvo;
 	}
 
-
+	/*Integer limit*/
 	@Override
 	public List<TechniqueQueryVo> recommendTech() {
 		// TODO Auto-generated method stub
@@ -239,5 +239,6 @@ public void deleteTechById(String techid,String userid) {
 	collectionmapper.deleteByExample(cex);
 	
 }
+
 
 }

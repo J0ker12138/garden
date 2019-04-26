@@ -167,7 +167,7 @@ public class DiaryServiceImpl implements DiaryService {
 	public void deleteDiary(String diaryid) {
 		// TODO Auto-generated method stub
 		OSSClientUtil oss=new OSSClientUtil();
-		oss.getOssClient().deleteObject("garden16",diaryMapper.selectByPrimaryKey(Integer.parseInt(diaryid)).getDiaryImage().substring(46));
+		oss.getOssClient().deleteObject("garden16",diaryMapper.selectByPrimaryKey(Integer.parseInt(diaryid)).getDiaryImage().substring(100));
 		
 		DiarylogExample ex=new DiarylogExample();
 		ex.createCriteria().andLogDiaryidEqualTo(Integer.parseInt(diaryid));
@@ -175,7 +175,7 @@ public class DiaryServiceImpl implements DiaryService {
 		for (int i = 0; i < listlog.size(); i++) {
 			String url=listlog.get(i).getLogImage();
 			if(url!=null){
-				oss.getOssClient().deleteObject("garden16",url.substring(46));
+				oss.getOssClient().deleteObject("garden16",url.substring(100));
 			}
 		}
 		diarylogMapper.deleteByExample(ex);
