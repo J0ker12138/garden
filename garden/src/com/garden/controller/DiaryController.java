@@ -78,12 +78,9 @@ public class DiaryController {
 		try {
 			if (!file.isEmpty()) {
 				url=ossutil.uploadImg2Oss(file);
-			
 			}
 			
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			
 			e.printStackTrace();
 		}
 		vo.getDiary().setDiaryImage(url);
@@ -116,9 +113,7 @@ public class DiaryController {
 		dvo.setDiarylog(log);
 		diaryService.addDiarylog(dvo);
 		
-		
 		return "ok";
-	
 	}
 	/**
 	 * 修改日记记录
