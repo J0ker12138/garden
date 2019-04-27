@@ -5,6 +5,7 @@ import java.util.List;
 import com.garden.po.Comment;
 import com.garden.po.CommentQueryVo;
 import com.garden.po.DynamicAll;
+import com.garden.po.DynamicLike;
 import com.garden.po.DynamicQueryVo;
 
 public interface NewDynamicMapper {
@@ -139,6 +140,10 @@ public interface NewDynamicMapper {
 	
 	//如果返回值为0 执行此方法 点赞加
 	public void addDynamiclikeByUseridAndDynamicId(DynamicAll dynamicAll);
+	
+	public Integer countLikeNum(Integer dynamicid);
+	
+	public void dynamiclikeUpdate(DynamicLike dynamicLike);
 		
 	
 	

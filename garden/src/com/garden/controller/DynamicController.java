@@ -83,7 +83,7 @@ public class DynamicController {
 	
 	//====================================================================测试代码
 	/**
-	 * 根据动态id和用户id设置动态
+	 * 根据动态id和用户id设置点赞
 	 * @param dynamicAll
 	 * @return
 	 */
@@ -172,7 +172,7 @@ public class DynamicController {
 	 * @param dynamicAll
 	 */
 	@RequestMapping("/findMyCommentByDynamicId")
-	public @ResponseBody List<CommentQueryVo> findMyCommentByDynamicId (@RequestBody DynamicAll dynamicAll) {
-		return dynamicService.findMyCommentByDynamicId(dynamicAll.getDynamic_userid());
+	public @ResponseBody List<CommentQueryVo> findMyCommentByDynamicId (String dynamic_userid) {
+		return dynamicService.findMyCommentByDynamicId(dynamic_userid);
 	}
 }

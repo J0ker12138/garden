@@ -9,6 +9,7 @@ import com.garden.mapper.NewDynamicMapper;
 import com.garden.po.Comment;
 import com.garden.po.CommentQueryVo;
 import com.garden.po.DynamicAll;
+import com.garden.po.DynamicLike;
 import com.garden.po.DynamicQueryVo;
 import com.garden.po.User;
 import com.garden.service.DynamicService;
@@ -132,14 +133,29 @@ public class DynamicServiceImpl implements DynamicService {
 		if(zhuan_tai == null) {
 			newDynamicMapper.insertDynamiclikeByUseridAndDynamicId(dynamicAll);
 			zhuan_tai = 1;
+			Integer countLikeNum = newDynamicMapper.countLikeNum(dynamicAll.getDynamic_id());
+			DynamicLike dl = new DynamicLike();
+			dl.setDynamiclike_dynamicid(dynamicAll.getDynamic_id());
+			dl.setDynamiclike_zt(countLikeNum);
+			newDynamicMapper.updateCommentNum(dynamicAll);
 			return zhuan_tai;
 		}else if(zhuan_tai == 1) {
 			newDynamicMapper.delDynamiclikeByUseridAndDynamicId(dynamicAll);
 			zhuan_tai = 0;
+			Integer countLikeNum = newDynamicMapper.countLikeNum(dynamicAll.getDynamic_id());
+			DynamicLike dl = new DynamicLike();
+			dl.setDynamiclike_dynamicid(dynamicAll.getDynamic_id());
+			dl.setDynamiclike_zt(countLikeNum);
+			newDynamicMapper.updateCommentNum(dynamicAll);
 			return zhuan_tai;
 		}else if (zhuan_tai == 0) {
 			newDynamicMapper.addDynamiclikeByUseridAndDynamicId(dynamicAll);
 			zhuan_tai = 1;
+			Integer countLikeNum = newDynamicMapper.countLikeNum(dynamicAll.getDynamic_id());
+			DynamicLike dl = new DynamicLike();
+			dl.setDynamiclike_dynamicid(dynamicAll.getDynamic_id());
+			dl.setDynamiclike_zt(countLikeNum);
+			newDynamicMapper.updateCommentNum(dynamicAll);
 			return zhuan_tai;
 		}
 		return -1;

@@ -203,14 +203,6 @@
 	</update>
 	
 	<!-- ========================================================= -->
-	
-	
-	
-	
-	
-	
-	<!-- ========================================测试代码====================================================== -->
-	
 	<select id="findDynamiclikeByUseridAndDynamicId" parameterType="com.garden.po.DynamicAll" resultType="integer">
 		SELECT 
 		  `dynamiclike_zt` 
@@ -249,6 +241,24 @@
 		WHERE `dynamiclike_userid` = #{dynamic_userid} AND `dynamiclike_dynamicid` = #{dynamic_id}  ;
 	</update>
 	
+	
+	
+	
+	
+	
+	<!-- ========================================测试代码====================================================== -->
+	
+	<select id="countLikeNum" parameterType="integer" resultType="integer">
+		SELECT COUNT(*) FROM dynamiclike WHERE dynamiclike_dynamicid = #{dynamic_id} AND dynamiclike_zt = 1;
+	</select>
+	
+	<update id="dynamiclikeUpdate" parameterType="com.garden.po.DynamicLike">
+		UPDATE 
+		  `dynamic` 
+		SET
+		  `dynamic_pointnum` = #{dynamiclike_zt}
+		WHERE `dynamic_id` =   #{dynamiclike_dynamicid};
+	</update>
 	
 	
 	
